@@ -1,0 +1,15 @@
+---
+const { id } = Astro.props;
+---
+
+<button popovertarget={id}></button>
+
+<div popover id={id}>
+  <slot />
+</div>
+
+<style>
+  [popover] {
+    background-color: brown;
+  }
+</style>

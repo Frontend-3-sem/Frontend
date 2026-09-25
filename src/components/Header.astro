@@ -1,0 +1,27 @@
+---
+import Logo from "./Logo.astro";
+import ButtonLogin from "./ButtonLogin.astro";
+---
+
+<header>
+  <nav>
+    <Logo />
+    <ul>
+      <li>Home</li>
+      <li>Case Studies</li>
+      <li>Team</li>
+      <li>About</li>
+    </ul>
+    <ButtonLogin label="Login" id="login">
+      <div>
+        <form><input type="text" /></form>
+      </div>
+    </ButtonLogin>
+  </nav>
+</header>
+
+<style>
+  li {
+    list-style: none;
+  }
+</style>
