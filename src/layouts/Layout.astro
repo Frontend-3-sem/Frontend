@@ -2,6 +2,7 @@
 import "@styles/main.css";
 import { Font } from "astro:assets";
 import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
 ---
 
 <html lang="en">
@@ -19,8 +20,52 @@ import Header from "@components/Header.astro";
   </head>
   <body>
     <Header />
-    <slot />
+    <main>
+      <slot />
+    </main>
+    <Footer />
   </body>
 </html>
 
-<style></style>
+<style is:global>
+  @layer global {
+    body {
+      display: grid;
+      grid-template-columns:
+        [full-start] 1fr [content]
+        minmax(0, 70ch)
+        1fr [full-end];
+
+      > * {
+        grid-column: full;
+      }
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: subgrid;
+      > * {
+        grid-column: content;
+      }
+    }
+
+    header,
+    footer {
+      display: grid;
+      grid-template-columns: subgrid;
+      > * {
+        grid-column: content;
+      }
+    }
+    .hero {
+      grid-column: 1 / -1;
+      display: grid;
+      background: #a8fad5;
+      grid-template-columns: subgrid;
+
+      > * {
+        grid-column: content;
+      }
+    }
+  }
+</style>
