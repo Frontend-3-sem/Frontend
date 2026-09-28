@@ -1,0 +1,15 @@
+---
+import { SectionText } from "./SectionText.astro";
+const { sectionColor } = Astro.props;
+---
+
+<section class="baseSection">
+<SectionText></SectionText>
+<slot></slot>
+</section>
+
+<style>
+    section {
+        background-color: {sectionColor};
+    }
+</style>
