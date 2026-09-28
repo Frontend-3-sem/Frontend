@@ -1,15 +1,48 @@
 ---
-const { id } = Astro.props;
+const { id, title } = Astro.props;
 ---
 
-<button popovertarget={id}></button>
+<button popovertarget={id}>{title}</button>
 
 <div popover id={id}>
   <slot />
 </div>
 
 <style>
+  button {
+    background-color: var(--color-neutrals-50);
+    color: var(--color-blue-700);
+    border: none;
+    padding: 4px 20px;
+    border-radius: 20px;
+  }
+
+  [popovertarget] {
+    anchor-name: --button;
+  }
+
   [popover] {
-    background-color: brown;
+    background-color: var(--color-surface-secondary);
+    position-area: bottom;
+    margin: 1rem;
+    border: none;
+    padding: 2rem;
+    --arrow-size: 1rem;
+    border-radius: 1.25rem;
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.1);
+
+    &::before {
+      content: "";
+      position: fixed;
+      width: calc(var(--arrow-size) * 1.5);
+      height: var(--arrow-size);
+      background: inherit;
+      clip-path: polygon(0 100%, 50% 0, 100% 100%);
+      position-anchor: --button;
+      position-area: bottom;
+    }
+    &::backdrop {
+      background: #0003;
+    }
   }
 </style>

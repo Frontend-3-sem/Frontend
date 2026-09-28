@@ -19,6 +19,7 @@ const { caseName, category, date, image, buttonLabel } = caseStudy.caseDetails;
 
 <Layout>
   <article class="case-story-article">
+    */ Flow */
     <header>
       <Image
         src={image.src}
@@ -48,11 +49,7 @@ const { caseName, category, date, image, buttonLabel } = caseStudy.caseDetails;
       {
         caseStudy.sections.map((section, index) => (
           <>
-            {index === 0 ? (
-              <h2>{section.title}</h2>
-            ) : (
-              <h3>{section.title}</h3>
-            )}
+            {index === 0 ? <h2>{section.title}</h2> : <h3>{section.title}</h3>}
 
             {Array.isArray(section.content) ? (
               <>
