@@ -1,11 +1,40 @@
 ---
-import { DynamicIcon } from "./helpers/DynamicIcon.astro";
-const { header, text, link, linktext };
+import DynamicIcon from "./helpers/DynamicIcon.astro";
+const { header, text, linktext, link } = Astro.props;
 ---
 
 <article>
   <DynamicIcon />
   <p>{header}</p>
   <p>{text}</p>
-  <a href="">{linktext}</a>
+  <a href={link}>{linktext}</a>
 </article>
+
+<style>
+  @layer components {
+    article {
+      --p: progress(100vw, 400px, 1200px);
+      padding: var(--card-padding);
+      border-radius: var(--general-radius);
+      p {
+        color: var(--color-text-muted);
+        font-family: var(--body-font);
+        font-size: calc(
+          var(--p) * (var(--body-max-size) - var(--body-min-size)) +
+            var(--body-min-size)
+        );
+      }
+
+      p:first-of-type {
+        color: var(--color-text);
+        font-family: var(--all-headers-font);
+        font-weight: var(--all-headers-weight);
+        --max-size: 1.5rem;
+        --min-size: 1rem;
+        font-size: calc(
+          var(--p) * (var(--max-size) - var(--min-size)) + var(--min-size)
+        );
+      }
+    }
+  }
+</style>
