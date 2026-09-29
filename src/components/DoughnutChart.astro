@@ -1,13 +1,10 @@
 ---
-import SectionText from "./SectionText.astro";
+import DoughnutSection from "@components/DoughnutSection.astro";
+
+const res = await fetch("https://ftk-api.pages.dev/experience");
+const experience = await res.json();
 ---
 
-<section>
-  <SectionText />
-  <slot />
-</section>
-
-<style>
-  section {
-  }
-</style>
+<div class="experience">
+  <DoughnutSection experience={experience} />
+</div>
