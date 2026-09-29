@@ -58,8 +58,6 @@ import cardContent from "../data/financialProjections.json";
 
   .expect-wrapper {
     container: expect / inline-size;
-    margin-inline: auto;
-    max-width: 1200px;
   }
 
   .expect {
@@ -67,7 +65,6 @@ import cardContent from "../data/financialProjections.json";
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--xxl-spacing);
 
-    margin-inline: auto;
     @container expect (width < 750px) {
       display: flex;
       flex-flow: wrap column-reverse;
