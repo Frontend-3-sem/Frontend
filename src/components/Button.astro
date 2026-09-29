@@ -1,0 +1,33 @@
+---
+const { href, variant = "primary", ...props } = Astro.props;
+---
+
+{
+  href ? (
+    <a data-variant={variant} {href}>
+      <slot />
+    </a>
+  ) : (
+    <button data-variant={variant} {...props}>
+      <slot />
+    </button>
+  )
+}
+
+<style>
+  a,
+  button {
+    padding: var(--btn-padding);
+    border-radius: var(--btn-radius);
+    border: none;
+  }
+  [data-variant="primary"] {
+    background: var(--color-ui-primary);
+    color: var(--color-on-ui-primary);
+  }
+
+  [data-variant="accent"] {
+    background: var(--color-action);
+    color: contrast-color(var(--color-action));
+  }
+</style>

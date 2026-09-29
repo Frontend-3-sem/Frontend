@@ -43,6 +43,7 @@
 
   --max-content: 75rem;
   --card-padding: var(--l-spacing);
+  --btn-padding: var(--s-spacing) var(--xl-spacing);
 
   /* ==== Typography ==== */
   /* PRIMITIVES */
