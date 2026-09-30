@@ -1,11 +1,28 @@
 ---
-import SectionText from "./SectionText.astro";
-const props = Astro.props;
+import SectionText from "@components/SectionText.astro";
+const { theme = "white", ...props } = Astro.props;
 ---
 
-<section class="baseSection">
+<section class="baseSection hero" data-theme={theme}>
   <SectionText {...props} />
   <slot />
 </section>
 
-<style></style>
+<style>
+  [data-theme] {
+    --surface: attr(data-theme type(muted | accent | dark), primary);
+    background: var(--bg-surface, var(--color-surface-primary));
+  }
+
+  [data-theme="dark"] {
+    --bg-surface: var(--color-ui-primary);
+  }
+
+  [data-theme="accent"] {
+    --bg-surface: var(--color-surface-highlight);
+  }
+
+  [data-theme="muted"] {
+    --bg-surface: var(--color-surface-secondary);
+  }
+</style>

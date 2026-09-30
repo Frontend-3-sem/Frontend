@@ -3,7 +3,7 @@ import DynamicIcon from "./helpers/DynamicIcon.astro";
 const { header, text, linktext, link } = Astro.props;
 ---
 
-<article>
+<article class="card">
   <DynamicIcon />
   <p>{header}</p>
   <p>{text}</p>
@@ -35,6 +35,16 @@ const { header, text, linktext, link } = Astro.props;
           var(--p) * (var(--max-size) - var(--min-size)) + var(--min-size)
         );
       }
+    }
+    .card {
+      @container style(--theme: dark) {
+        --card-bg: var(--color-surface-secondary);
+      }
+      @container style(--theme: muted) {
+        --card-bg: var(--color-surface-primary);
+      }
+
+      background: var(--card-bg, var(--color-surface-primary));
     }
   }
 </style>
