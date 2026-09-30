@@ -34,9 +34,15 @@ import Newsletter from "@components/Newsletter.astro";
     body {
       display: grid;
       grid-template-columns:
-        [full-start] 1fr [content]
-        minmax(0, 75rem)
-        1fr [full-end];
+        [full-start]
+        minmax(1rem, 1fr)
+        [content-start]
+        minmax(0, 37.5rem)
+        [center]
+        minmax(0, 37.5rem)
+        [content-end]
+        minmax(1rem, 1fr)
+        [full-end];
 
       > * {
         grid-column: full;
