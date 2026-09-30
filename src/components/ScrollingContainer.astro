@@ -1,32 +1,29 @@
 ---
-import ScrollingSection from "./ScrollingSection.astro";
-
-const res = await fetch("https://ftk-api.pages.dev/financial-projections");
-const financial = await res.json();
+import DynamicIcon from "./helpers/DynamicIcon.astro";
+const { title, icon, description } = Astro.props;
 ---
 
-<div class="financial">
-  <ScrollingSection financial={financial} />
-</div>
+<article>
+  <DynamicIcon name={icon} />
+  <h4>{title}</h4>
+  <p>{description}</p>
+</article>
 
 <style>
-  ul {
-    list-style: none;
-    display: flex;
-    grid-column: 1/-1;
-    gap: var(--card-gap);
-    scroll-behavior: smooth;
-    overflow-inline: auto;
-    scroll-snap-type: inline mandatory;
-    padding-inline: max(1rem, 50% - var(--content-width) / 2);
+  article {
+    background-color: var(--color-neutrals-200);
+    padding: var(--m-spacing);
+    border-radius: var(--general-radius);
+    color: var(--card-text-color);
+    flex: 0 0 min(85%, 24rem);
+    scroll-snap-align: center;
 
-    > * {
-      background-color: var(--card-background);
-      padding: var(--card-padding);
-      border-radius: var(--card-border-radius);
-      color: var(--card-text-color);
-      flex: 0 0 min(85%, 24rem);
-      scroll-snap-align: center;
+    h4 {
+      font-size: 1.5rem;
+    }
+
+    p {
+      color: var(--color-text-muted);
     }
   }
 </style>

@@ -1,0 +1,76 @@
+---
+import Section from "@components/Section.astro";
+import GreenBox from "@components/GreenBox.astro";
+import ExpectImage from "@assets/images/whattoexpect.webp";
+import { Image } from "astro:assets";
+import Checkmark from "@icons/checkmark.svg";
+---
+
+<div class="expect-wrapper">
+  <section class="expect">
+    <div class="img">
+      <GreenBox width="11rem" height="10rem" data-location="top-left">
+        <Image class="expectImg" src={ExpectImage} alt="What to expect" />
+      </GreenBox>
+    </div>
+    <div>
+      <Section
+        eyebrow="WE'LL WORK WITH YOU"
+        title="What To Expect"
+        subtitle="Our collaboration is built on transparency, efficiency, and measurable results. Together, we create strategies tailored to your unique needs and goals."
+      />
+      <div class="checksvg">
+        <Checkmark width={32} height={32} class="checkmark" />
+        <p>
+          Collaborate to build actionable strategies that drive sustainable
+          growth and deliver tangible outcomes.
+        </p>
+      </div>
+      <div class="checksvg">
+        <Checkmark width={32} height={32} class="checkmark" />
+        <p>
+          Identify opportunities to optimize processes and implement impactful
+          solutions with measurable results.
+        </p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  .checkmark {
+    color: var(--color-ui-secondary-alternative);
+  }
+
+  /* display: flex;
+  flex-flow: wrap row-reverse;
+  gap: 2rem;
+  > * {
+    flex: 300px;
+  } */
+
+  .expect-wrapper {
+    container: expect / inline-size;
+  }
+
+  .expect {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--xxl-spacing);
+
+    .checksvg {
+      display: flex;
+      align-items: start;
+      gap: var(--m-spacing);
+    }
+    img {
+      border-radius: var(--general-radius);
+    }
+
+    @container expect (width < 750px) {
+      display: flex;
+      flex-flow: wrap column-reverse;
+      gap: 2rem;
+    }
+  }
+</style>
