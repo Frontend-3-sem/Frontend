@@ -1,13 +1,27 @@
 ---
-const { financial } = Astro.props;
-import Cal from "@icons/cal.svg";
+//@ts-nocheck
+import ScrollingContainer from "@components/ScrollingContainer.astro";
+import ButtonLogin from "@components/ButtonLogin.astro";
+import { getFinancial } from "@lib/api";
+import Section from "./Section.astro";
+import SectionText from "@components/SectionText.astro";
+const FinancialData = await getFinancial();
+const { title, subtitle, eyebrow, values } = FinancialData;
 ---
 
-<section>
-  <h5>{financial.eyebrow}</h5>
-  <h3>{financial.title}</h3>
-  <p>{financial.subtitle}</p>
-  <Cal />
-</section>
+<SectionText title={title} subtitle={subtitle} eyebrow={eyebrow} />
+<div>
+  {values.map((card) => <ScrollingContainer {...card} />)}
+</div>
 
-<section></section>
+<style>
+  div {
+    display: flex;
+    grid-column: 1/-1;
+    gap: var(--m-spacing);
+    scroll-behavior: smooth;
+    overflow-inline: auto;
+    scroll-snap-type: inline mandatory;
+    padding-inline: max(1rem, 50% - var(--max-content) / 2);
+  }
+</style>

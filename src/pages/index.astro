@@ -1,93 +1,14 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import Hero from "@components/Hero.astro";
-import Section from "@components/SectionText.astro";
-import { Image } from "astro:assets";
-import ExpectImage from "@assets/images/whattoexpect.webp";
-import Checkmark from "@icons/checkmark.svg";
 import DoughnutChart from "@components/DoughnutChart.astro";
-import ScrollingContainer from "@components/ScrollingContainer.astro";
-import cardContent from "../data/financialProjections.json";
+import WhatToExpect from "@components/WhatToExpect.astro";
+import ScrollingSection from "@components/ScrollingSection.astro";
 ---
 
 <Layout>
   <Hero />
-  <div class="expect-wrapper">
-    <section class="expect">
-      <div class="img">
-        <Image class="expectImg" src={ExpectImage} alt="What to expect" />
-      </div>
-      <div>
-        <Section
-          preheader="WE'LL WORK WITH YOU"
-          header="What To Expect"
-          text="Our collaboration is built on transparency, efficiency, and measurable results. Together, we create strategies tailored to your unique needs and goals."
-        />
-        <div>
-          <Checkmark width={32} height={32} class="checkmark" />
-          <p>
-            Collaborate to build actionable strategies that drive sustainable
-            growth and deliver tangible outcomes.
-          </p>
-        </div>
-        <div>
-          <Checkmark width={32} height={32} class="checkmark" />
-          <p>
-            Identify opportunities to optimize processes and implement impactful
-            solutions with measurable results.
-          </p>
-        </div>
-      </div>
-    </section>
-  </div>
-  <ScrollingContainer cardContent={cardContent} />
+  <WhatToExpect />
+  <ScrollingSection />
   <DoughnutChart />
 </Layout>
-
-<style>
-  .checkmark {
-    color: var(--color-ui-secondary-alternative);
-  }
-
-  /* display: flex;
-  flex-flow: wrap row-reverse;
-  gap: 2rem;
-  > * {
-    flex: 300px;
-  } */
-
-  .expect-wrapper {
-    container: expect / inline-size;
-  }
-
-  .expect {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--xxl-spacing);
-
-    @container expect (width < 750px) {
-      display: flex;
-      flex-flow: wrap column-reverse;
-      gap: 2rem;
-    }
-
-    .img,
-    .expectImg {
-      position: relative;
-      isolation: isolate;
-      border-radius: var(--general-radius);
-
-      &::after {
-        content: "";
-        position: absolute;
-        border-radius: var(--general-radius);
-        width: 180px;
-        height: 160px;
-        top: -2rem;
-        left: -2rem;
-        background: var(--color-ui-secondary);
-        z-index: -1;
-      }
-    }
-  }
-</style>

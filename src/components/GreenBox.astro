@@ -1,0 +1,33 @@
+---
+const { location = "top-left", width, height } = Astro.props;
+---
+
+<figure data-location={location} data-width={width} data-height={height}>
+  <slot />
+</figure>
+
+<style>
+  figure {
+    --size: 100px;
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    isolation: isolate;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: attr(data-width type(<length>), var(--size));
+      height: attr(data-height type(<length>), var(--size));
+      border-radius: 1rem;
+      background: var(--color-green-400);
+      z-index: -1;
+    }
+    &[data-location="top-left"]::before {
+      inset: -1rlh auto auto -1rlh;
+    }
+    &[data-location="bottom-left"]::before {
+      inset: auto auto -1rlh -1rlh;
+    }
+  }
+</style>
