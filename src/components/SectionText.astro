@@ -2,13 +2,21 @@
 const { eyebrow, title, subtitle } = Astro.props;
 ---
 
-<h5>{eyebrow}</h5>
-<h3>{title}</h3>
-<p>{subtitle}</p>
+<article class="sectText">
+  <h5>{eyebrow}</h5>
+  <h3>{title}</h3>
+  <p>{subtitle}</p>
+  <h6></h6>
+</article>
 
 <style is:global>
+  .sectText {
+    padding-inline: max(1rem, 50% - var(--max-content) / 2);
+  }
   @layer global {
     h5 {
+      text-transform: uppercase;
+      letter-spacing: var(--pre-header-letter-spacing);
       text-box: trim-start cap alphabetic;
       margin: 0;
       font-size: clamp(
@@ -24,8 +32,13 @@ const { eyebrow, title, subtitle } = Astro.props;
         var(--h3-max-size)
       );
     }
+    h4 {
+      font-size: clamp(var(--h6-max-size), 0.485vw + 0.761rem, 1.125rem);
+      font-weight: 900;
+    }
     p {
       font-size: clamp(0.875rem, 0.485vw + 0.761rem, 1.125rem);
+      text-wrap: balance;
     }
   }
 </style>

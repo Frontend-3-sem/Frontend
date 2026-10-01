@@ -19,19 +19,21 @@ import Checkmark from "@icons/checkmark.svg";
         title="What To Expect"
         subtitle="Our collaboration is built on transparency, efficiency, and measurable results. Together, we create strategies tailored to your unique needs and goals."
       />
-      <div class="checksvg">
-        <Checkmark width={32} height={32} class="checkmark" />
-        <p>
-          Collaborate to build actionable strategies that drive sustainable
-          growth and deliver tangible outcomes.
-        </p>
-      </div>
-      <div class="checksvg">
-        <Checkmark width={32} height={32} class="checkmark" />
-        <p>
-          Identify opportunities to optimize processes and implement impactful
-          solutions with measurable results.
-        </p>
+      <div class="checkpadding">
+        <div class="checksvg">
+          <Checkmark width={32} height={32} class="checkmark" />
+          <p>
+            Collaborate to build actionable strategies that drive sustainable
+            growth and deliver tangible outcomes.
+          </p>
+        </div>
+        <div class="checksvg">
+          <Checkmark width={32} height={32} class="checkmark" />
+          <p>
+            Identify opportunities to optimize processes and implement impactful
+            solutions with measurable results.
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -40,6 +42,11 @@ import Checkmark from "@icons/checkmark.svg";
 <style>
   .checkmark {
     color: var(--color-ui-secondary-alternative);
+  }
+
+  .checkpadding {
+    display: grid;
+    gap: var(--m-spacing);
   }
 
   /* display: flex;
@@ -51,6 +58,7 @@ import Checkmark from "@icons/checkmark.svg";
 
   .expect-wrapper {
     container: expect / inline-size;
+    margin-block: 5.6rem;
   }
 
   .expect {
@@ -61,7 +69,7 @@ import Checkmark from "@icons/checkmark.svg";
     .checksvg {
       display: flex;
       align-items: start;
-      gap: var(--m-spacing);
+      gap: var(--s-spacing);
     }
     img {
       border-radius: var(--general-radius);

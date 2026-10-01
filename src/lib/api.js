@@ -18,3 +18,15 @@ export function getTeamMembers() {
 export function getFinancial() {
   return apiFetch("https://ftk-api.pages.dev/financial-projections");
 }
+
+export function getExperience() {
+  return apiFetch("https://ftk-api.pages.dev/experience");
+}
+
+export function getValue() {
+  return apiFetch("https://ftk-api.pages.dev/core-values");
+}
+
+export function getFaq() {
+  return apiFetch("https://ftk-api.pages.dev/faq");
+}
