@@ -1,5 +1,9 @@
 /* Globale styles her */
 
+@view-transition {
+  navigation: auto;
+}
+
 html {
   font-family: var(--font-lato);
 }
