@@ -16,13 +16,22 @@ const { theme = "white", ...props } = Astro.props;
 
   [data-theme="dark"] {
     --bg-surface: var(--color-ui-primary);
+    padding: 5.6rem 0rem;
+    h5,
+    h3,
+    p {
+      color: var(--color-on-ui-primary);
+    }
   }
 
   [data-theme="accent"] {
     --bg-surface: var(--color-surface-highlight);
+    padding: 5.6rem 0rem;
+    padding-inline: max(1rem, 50% - var(--max-content) / 2);
   }
 
   [data-theme="muted"] {
     --bg-surface: var(--color-surface-secondary);
+    padding: 5.6rem 0rem;
   }
 </style>

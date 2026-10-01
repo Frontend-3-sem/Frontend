@@ -1,10 +1,26 @@
 ---
+//@ts-nocheck
 import DoughnutSection from "@components/DoughnutSection.astro";
-
-const res = await fetch("https://ftk-api.pages.dev/experience");
-const experience = await res.json();
+import { getExperience } from "@lib/api";
+const ExperienceData = await getExperience();
+const { theme = "accent" } = Astro.props;
+const { eyebrow, title, subtitle, stats, label } = ExperienceData;
+import Section from "./Section.astro";
+import SectionText from "@components/SectionText.astro";
 ---
 
-<div class="experience">
-  <DoughnutSection experience={experience} />
-</div>
+<Section theme={theme}>
+  <SectionText eyebrow={eyebrow} title={title} subtitle={subtitle} />
+  <div class="doughnut">
+    {stats.map((stat) => <DoughnutSection {...stat} />)}
+  </div>
+</Section>
+
+<style>
+  .doughnut {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: end;
+    gap: 2rem;
+  }
+</style>

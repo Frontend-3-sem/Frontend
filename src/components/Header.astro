@@ -85,4 +85,9 @@ const currentPath = Astro.url.pathname;
     display: flex;
     flex-direction: column;
   }
+  form > * {
+    transition: 0.5s;
+    transition-delay: calc(sibling-index() * 0.1s);
+    transition-timing-function:;
+  }
 </style>
