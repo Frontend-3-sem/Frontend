@@ -1,14 +1,61 @@
 ---
-const { experience } = Astro.props;
+const { label, value } = Astro.props;
 ---
 
-<section>
-  <h5>{experience.eyebrow}</h5>
-  <h3>{experience.title}</h3>
-  <p>{experience.subtitle}</p>
-</section>
+<figure data-value={value}>
+  <svg viewBox="0 0 100 100">
+    <circle class="track"></circle>
+    <circle class="progress" pathLength="100"></circle>
+    <circle class="marker" r="4" fill="black" stroke="white"></circle>
+  </svg>
+  <h4>{label}</h4>
+</figure>
 
 <style>
-  section {
+  figure {
+    --value-string: attr(data-value);
+    --value-number: attr(data-value type(<number>));
+    --value-percent: attr(data-value %);
+
+    container: stack / inline-size;
+    display: grid;
+    grid: "stack";
+    place-items: center;
+    flex: 0 1 200px;
+    min-inline-size: 0;
+    text-align: center;
+    gap: var(--s-spacing);
+  }
+
+  figure::after {
+    content: var(--value-string) "%";
+    grid-area: stack;
+    font-size: 25cqw;
+    font-weight: 700;
+  }
+  svg {
+    grid-area: stack;
+    rotate: z -90deg;
+  }
+  .track {
+    stroke: gainsboro;
+  }
+  .track,
+  .progress {
+    cx: 50;
+    cy: 50;
+    r: 46;
+    fill: none;
+    stroke-width: 4;
+  }
+  .progress {
+    stroke: white;
+    stroke-dasharray: 100.1;
+    stroke-dashoffset: calc(100 - var(--value-number));
+    stroke-linecap: round;
+  }
+  .marker {
+    offset-path: circle(46px at 50px 50px);
+    offset-distance: var(--value-percent);
   }
 </style>
