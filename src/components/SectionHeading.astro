@@ -1,0 +1,35 @@
+---
+
+---
+
+<section>
+  <div>
+    <p>Pre header</p>
+    <h1>Heading</h1>
+    <p>Tekst her</p>
+  </div>
+</section>
+
+<style>
+  section {
+    margin-block: 3rem;
+  }
+  h1 {
+    --underline: 4px;
+    --offset: 3px;
+    text-decoration: underline red var(--underline);
+    text-underline-offset: var(--offset);
+    anchor-name: --title;
+    text-box: cap alphabetic;
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: anchor(--title left);
+      top: calc (anchor(--title top) + 1cap);
+      margin-top: var(--offset);
+      height: var(--underline);
+      background: linear-gradient(90deg, transparent, red);
+    }
+  }
+</style>

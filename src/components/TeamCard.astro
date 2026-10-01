@@ -1,0 +1,107 @@
+---
+import DynamicIcon from "@components/helpers/DynamicIcon.astro";
+import { Image } from "astro:assets";
+const { teamMember } = Astro.props;
+---
+
+<div class="card-wrap">
+  <article>
+    <div>
+      <Image
+        class="img"
+        style={`view-transition-name: img-${teamMember.slug}`}
+        src={teamMember.image.src}
+        alt=""
+        width={teamMember.image.width}
+        height={teamMember.image.height}
+      />
+    </div>
+    <div>
+      <h3>{teamMember.name}</h3>
+      <p class="title">{teamMember.title}</p>
+      <p>{teamMember.description}</p>
+      <div class="socials">
+        <DynamicIcon name="instagram" />
+        <DynamicIcon name="facebook" />
+      </div>
+    </div>
+  </article>
+</div>
+
+<style>
+  .card-wrap {
+    container: wrap / inline-size;
+  }
+
+  article {
+    anchor-scope: --card-anchor;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    place-items: center;
+    --p: progress(100vw, 400px, 1200px);
+    h3 {
+      font-size: calc(
+        var(--p) * (var(--h6-max-size) - var(--h6-min-size)) +
+          var(--h6-min-size)
+      );
+    }
+    .title {
+      font-weight: var(--all-headers-weight);
+      font-size: calc(
+        var(--p) * (var(--body-max-size) - var(--body-min-size)) +
+          var(--body-min-size)
+      );
+    }
+    p:not(.title) {
+      color: var(--color-text-muted);
+      font-size: calc(
+        var(--p) * (var(--body-max-size) - var(--body-min-size)) +
+          var(--body-min-size)
+      );
+      text-wrap: pretty;
+    }
+    .img {
+      anchor-name: --card-anchor;
+    }
+
+    :first-child {
+      border-radius: var(--general-radius);
+    }
+    > :last-child {
+      padding: var(--card-padding);
+    }
+
+    .socials {
+      display: none;
+    }
+
+    @container wrap (width < 500px) {
+      grid-template-columns: 1fr;
+      > * {
+        text-align: center;
+      }
+      .title {
+        position: absolute;
+        position-area: center;
+        place-self: end;
+        position-anchor: --card-anchor;
+        z-index: 5;
+        background: var(--color-ui-primary);
+        color: var(--color-on-ui-primary);
+        margin: var(--s-spacing);
+        padding: var(--xs-spacing) var(--m-spacing);
+        border-radius: var(--btn-radius);
+      }
+
+      > :last-child {
+        padding: var(--m-spacing);
+      }
+
+      .socials {
+        display: flex;
+        justify-content: center;
+        gap: var(--m-spacing);
+      }
+    }
+  }
+</style>

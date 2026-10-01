@@ -1,7 +1,63 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import { getTeamMembers } from "@lib/api";
+import TeamCard from "@components/TeamCard.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+import Button from "@components/Button.astro";
+
+const team = await getTeamMembers();
 ---
 
 <Layout>
-  <h1>Her skal TEAM-siden være</h1>
+  <SectionHeading />
+  <div class="intro">
+    <div>
+      <h3>Meet Our Great Team</h3>
+      <p>
+        Welcome to our amazing team! We are a group of passionate individuals
+        dedicated to excellence and innovation. Each member brings unique skills
+        and experiences, working together to achieve our goals. Join us as we
+        embark on exciting projects and create lasting impacts.
+      </p>
+    </div>
+    <Button variant="primary">Join our team</Button>
+  </div>
+  <div class="teamWrap">
+    <div class="teamList">
+      {team.map((teamMember) => <TeamCard {teamMember} />)}
+    </div>
+  </div>
 </Layout>
+
+<style>
+  .intro {
+    display: flex;
+    justify-content: space-between;
+    place-items: end;
+    > :first-child {
+      max-width: 70ch;
+      text-wrap: pretty;
+    }
+    p {
+      font-size: var(--body-min-size);
+      color: var(--color-text-muted);
+    }
+  }
+
+  .teamWrap {
+    container: teamWrap / inline-size;
+  }
+
+  .teamList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--xxl-spacing);
+
+    @container teamWrap (width < 900px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @container teamWrap (width < 700px) {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -67,7 +67,7 @@
   --h5-min-size: 1.375rem;
 
   --h6-max-size: 1.875rem;
-  /* --h6-min-size: */
+  --h6-min-size: 1.5rem;
 
   --all-headers-weight: var(--semibold-weight);
   --all-headers-font: var(--font-cabin);
