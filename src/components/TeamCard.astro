@@ -17,9 +17,9 @@ const { teamMember } = Astro.props;
       />
     </div>
     <div>
-      <h3>{teamMember.name}</h3>
+      <h6>{teamMember.name}</h6>
       <p class="title">{teamMember.title}</p>
-      <p>{teamMember.description}</p>
+      <p class="small">{teamMember.description}</p>
       <div class="socials">
         <DynamicIcon name="instagram" />
         <DynamicIcon name="facebook" />
@@ -38,26 +38,13 @@ const { teamMember } = Astro.props;
     display: grid;
     grid-template-columns: 1fr 2fr;
     place-items: center;
-    --p: progress(100vw, 400px, 1200px);
-    h3 {
-      font-size: calc(
-        var(--p) * (var(--h6-max-size) - var(--h6-min-size)) +
-          var(--h6-min-size)
-      );
-    }
+
     .title {
       font-weight: var(--all-headers-weight);
-      font-size: calc(
-        var(--p) * (var(--body-max-size) - var(--body-min-size)) +
-          var(--body-min-size)
-      );
     }
     p:not(.title) {
       color: var(--color-text-muted);
-      font-size: calc(
-        var(--p) * (var(--body-max-size) - var(--body-min-size)) +
-          var(--body-min-size)
-      );
+
       text-wrap: pretty;
     }
     .img {
