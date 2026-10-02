@@ -5,19 +5,18 @@ import Arrowright from "@icons/arrow--right.svg";
 const { title, icon, description, link } = Astro.props;
 ---
 
-<article class="card">
-  <DynamicIcon name={icon} />
-  <h4>{title}</h4>
-  <p>{description}</p>
-  <a href={link.url}><span><p>{link.text}</p></span><Arrowright /></a>
+<article class="card card-layout">
+  <div>
+    <DynamicIcon name={icon} />
+    <h4>{title}</h4>
+    <p>{description}</p>
+    <a href={link.url}><span><p>{link.text}</p></span><Arrowright /></a>
+  </div>
 </article>
 
 <style>
   @layer components {
     article {
-      --p: progress(100vw, 400px, 1200px);
-      padding: var(--card-padding);
-      border-radius: var(--general-radius);
       flex: 0 0 min(85%, 24rem);
       scroll-snap-align: center;
       a {
@@ -29,22 +28,6 @@ const { title, icon, description, link } = Astro.props;
       }
       p {
         color: var(--color-text-muted);
-        font-family: var(--body-font);
-        font-size: calc(
-          var(--p) * (var(--body-max-size) - var(--body-min-size)) +
-            var(--body-min-size)
-        );
-      }
-
-      p:first-of-type {
-        color: var(--color-text);
-        font-family: var(--all-headers-font);
-        font-weight: var(--all-headers-weight);
-        --max-size: 1.5rem;
-        --min-size: 1rem;
-        font-size: calc(
-          var(--p) * (var(--max-size) - var(--min-size)) + var(--min-size)
-        );
       }
     }
     .card {
