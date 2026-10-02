@@ -8,8 +8,8 @@ const { eyebrow, title, subtitle } = Astro.props;
   <p>{subtitle}</p>
 </article>
 
-<style is:global>
-  @layer global {
+<style>
+  @layer components {
     .sectText {
       grid-column: content-start / center;
       > :nth-child(2) {
@@ -23,6 +23,16 @@ const { eyebrow, title, subtitle } = Astro.props;
     h5 {
       text-box: trim-start cap alphabetic;
       margin: 0;
+    }
+    .sectText {
+      @container style(--surface: dark) {
+        --section-text: var(--color-on-ui-primary);
+      }
+      @container style(--surface: muted) {
+        --section-text: var(--color-text);
+      }
+
+      color: var(--section-text, var(--color-text));
     }
   }
 </style>

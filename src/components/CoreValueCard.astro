@@ -17,11 +17,30 @@ const { title, icon, description, link } = Astro.props;
 <style>
   @layer components {
     article {
-      flex: 0 0 min(85%, 24rem);
-      scroll-snap-align: center;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto auto auto;
+      height: fit-content;
+      div {
+        /* display: grid;
+        grid-template-rows: subgrid;
+        grid-row: span 4;
+        place-content: start; */
+        > :first-child {
+          background: black;
+          color: white;
+          aspect-ratio: 1/1;
+          width: 50px;
+          padding: 12px;
+          border-radius: 100px;
+        }
+      }
+      h4 {
+        font-size: var(--postheader-size);
+      }
       a {
         display: inline-flex;
-        justify-self: center;
+        /* justify-self: center; */
         text-decoration: none;
         color: inherit;
         gap: 1rem;
