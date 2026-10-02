@@ -26,7 +26,7 @@ import DynamicIcon from "./helpers/DynamicIcon.astro";
     border: none;
     text-decoration: none;
     font-weight: var(--semibold-weight);
-    font-size: var(--body-max-size);
+    font-size: var(--body-size);
     display: inline-flex;
     align-items: center;
     gap: var(--xs-spacing);
@@ -44,6 +44,12 @@ import DynamicIcon from "./helpers/DynamicIcon.astro";
   [data-variant="accent"] {
     background: var(--color-action);
     color: contrast-color(var(--color-action));
+  }
+
+  [data-variant="outline"] {
+    background: var(--color-ui-primary);
+    color: var(--color-on-ui-primary);
+    border: solid 1px var(--color-text-muted);
   }
 
   span {

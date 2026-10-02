@@ -8,7 +8,7 @@ import DynamicIcon from "./helpers/DynamicIcon.astro";
 
 <section class="hero">
   <div class="hero-content">
-    <h1>Empowering Your Business Growth</h1>
+    <h1><span>Empowering</span> Your Business Growth</h1>
     <p>
       Discover tailored strategies and expert insights to take your business to
       the next level. Let us help you navigate challenges and achieve
@@ -16,7 +16,7 @@ import DynamicIcon from "./helpers/DynamicIcon.astro";
     </p>
     <div class="btn-wrap">
       <Button variant="accent" href="#0">Book a Meeting</Button>
-      <Button variant="primary" href="#0" name="arrow--right">Learn More</Button
+      <Button variant="outline" href="#0" name="arrow--right">Learn More</Button
       >
     </div>
   </div>
@@ -59,16 +59,49 @@ import DynamicIcon from "./helpers/DynamicIcon.astro";
       place-self: center left;
       text-wrap: balance;
       h1 {
-        font-size: var(--h2-max-size);
+        --underline: 4px;
+        --offset: 8px;
+        font-size: var(--h2-size);
         color: var(--color-on-ui-primary);
+        text-box: cap alphabetic;
+        line-height: 1.2;
+        anchor-name: --title;
+        &::before {
+          content: "";
+          position: absolute;
+          position-anchor: --title;
+          top: calc(anchor(top) + 1cap);
+          margin-top: var(--offset);
+          height: var(--underline);
+          background: linear-gradient(
+            to right,
+            transparent,
+            var(--color-action)
+          );
+          right: calc(anchor(left) - 1px);
+          left: 0;
+        }
+        span {
+          --underline: 4px;
+          --offset: 8px;
+          text-decoration: underline var(--color-action) var(--underline);
+          text-underline-offset: var(--offset);
+        }
+      }
+      p {
+        margin-top: var(--s-spacing);
+        margin-bottom: var(--l-spacing);
       }
     }
 
     .btn-wrap {
+      display: flex;
       flex-wrap: wrap;
-      /* :last-child {
+      gap: var(--s-spacing);
+      /* .border a {
         border: solid 1px red;
       } */
+      margin-bottom: var(--xl-spacing);
     }
 
     .service-wrap {
