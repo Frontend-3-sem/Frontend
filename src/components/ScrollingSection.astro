@@ -1,10 +1,9 @@
 ---
 //@ts-nocheck
-import ScrollingContainer from "@components/ScrollingContainer.astro";
-import ButtonLogin from "@components/ButtonLogin.astro";
 import { getFinancial } from "@lib/api";
 import Section from "@components/Section.astro";
 import SectionText from "@components/SectionText.astro";
+import ScrollingCard from "./ScrollingCard.astro";
 const { theme = "muted" } = Astro.props;
 const FinancialData = await getFinancial();
 const { title, subtitle, eyebrow, values } = FinancialData;
@@ -12,16 +11,15 @@ const { title, subtitle, eyebrow, values } = FinancialData;
 
 <Section theme={theme}>
   <SectionText title={title} subtitle={subtitle} eyebrow={eyebrow} />
-  <div>
-    {values.map((card) => <ScrollingContainer {...card} />)}
+  <div class="scrolling">
+    {values.map((card) => <ScrollingCard {...card} />)}
   </div>
 </Section>
 
 <style>
-  div {
+  .scrolling {
     display: flex;
     grid-column: 1/-1;
-    column-gap: 1rem;
     gap: var(--m-spacing);
     scroll-behavior: smooth;
     overflow-inline: auto;

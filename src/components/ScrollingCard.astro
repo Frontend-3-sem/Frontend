@@ -1,0 +1,53 @@
+---
+const { icon, title, description } = Astro.props;
+import DynamicIcon from "./helpers/DynamicIcon.astro";
+---
+
+<article class="card">
+  <div>
+    <DynamicIcon name={icon} />
+    <h4>{title}</h4>
+    <p>{description}</p>
+  </div>
+</article>
+
+<style>
+  @layer components {
+    article {
+      --p: progress(100vw, 400px, 1200px);
+      padding: var(--card-padding);
+      border-radius: var(--general-radius);
+      scroll-snap-align: center;
+      flex: 0 0 min(85%, 24rem);
+      p {
+        color: var(--color-text-muted);
+        font-family: var(--body-font);
+        font-size: calc(
+          var(--p) * (var(--body-max-size) - var(--body-min-size)) +
+            var(--body-min-size)
+        );
+      }
+
+      p:first-of-type {
+        color: var(--color-text);
+        font-family: var(--all-headers-font);
+        font-weight: var(--all-headers-weight);
+        --max-size: 1.5rem;
+        --min-size: 1rem;
+        font-size: calc(
+          var(--p) * (var(--max-size) - var(--min-size)) + var(--min-size)
+        );
+      }
+    }
+    .card {
+      @container style(--theme: dark) {
+        --card-bg: var(--color-surface-secondary);
+      }
+      @container style(--theme: muted) {
+        --card-bg: var(--color-surface-primary);
+      }
+
+      background: var(--card-bg, var(--color-surface-tertiary));
+    }
+  }
+</style>

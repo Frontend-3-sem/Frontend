@@ -4,8 +4,8 @@ const { label, value } = Astro.props;
 
 <figure data-value={value}>
   <svg viewBox="0 0 100 100">
-    <circle class="track"></circle>
-    <circle class="progress" pathLength="100"></circle>
+    <circle cx="50" cy="50" r="48" class="track"></circle>
+    <circle cx="50" cy="50" r="48" class="progress" pathLength="100"></circle>
     <circle class="marker" r="4" fill="black" stroke="white"></circle>
   </svg>
   <h4>{label}</h4>
@@ -58,4 +58,20 @@ const { label, value } = Astro.props;
     offset-path: circle(46px at 50px 50px);
     offset-distance: var(--value-percent);
   }
+
+  /* figure {
+    animation: --frames 1s linear;
+    timeline-trigger: --a view() entry 100% exit 0% / cover;
+    animation-trigger: --a play-forwards reset;
+
+    rotate: calc(var(--s) * 360deg);
+    transition: rotate .4s;
+  }
+
+  @keyframes --frames {
+    to {
+      rotate: 1turn;
+      --s: 1
+    }
+  } */
 </style>

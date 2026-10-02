@@ -1,9 +1,9 @@
 ---
 //@ts-nocheck
-import ScrollingContainer from "@components/ScrollingContainer.astro";
 import { getValue } from "@lib/api";
 import Section from "@components/Section.astro";
 import SectionText from "@components/SectionText.astro";
+import CoreValueCard from "./CoreValueCard.astro";
 const { theme = "dark" } = Astro.props;
 const ValueData = await getValue();
 const { title, subtitle, eyebrow, values } = ValueData;
@@ -11,13 +11,13 @@ const { title, subtitle, eyebrow, values } = ValueData;
 
 <Section theme={theme}>
   <SectionText title={title} subtitle={subtitle} eyebrow={eyebrow} />
-  <div>
-    {values.map((card) => <ScrollingContainer {...card} />)}
+  <div class="CoreValue">
+    {values.map((card) => <CoreValueCard {...card} />)}
   </div>
 </Section>
 
 <style>
-  div {
+  .CoreValue {
     display: flex;
     grid-column: 1/-1;
     gap: var(--m-spacing);
