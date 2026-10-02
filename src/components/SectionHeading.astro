@@ -12,7 +12,7 @@ const { preheader, header, text, direction = "left" } = Astro.props;
 
 <style>
   section {
-    padding-block: var(--xxl-spacing);
+    padding-block: calc(var(--xxl-spacing) * 2);
     background: var(--color-surface-secondary);
   }
   div {
@@ -32,6 +32,8 @@ const { preheader, header, text, direction = "left" } = Astro.props;
     anchor-name: --title;
     text-box: cap alphabetic;
     width: fit-content;
+    margin-top: var(--s-spacing);
+    margin-bottom: var(--l-spacing);
     &::before {
       content: "";
       position: absolute;
