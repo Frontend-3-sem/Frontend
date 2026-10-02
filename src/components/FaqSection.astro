@@ -1,8 +1,11 @@
 <!-- ---
 //@ts-nocheck
-import Faq from "./Faq.astro";
+import Faq from "@components/Faq.astro";
+const faqData = await fetch("https://ftk-api.pages.dev/faq").then((res) =>
+  res.json(),
+);
 ---
 
-<div class="faq">
-  {FaqData.map((faq) => <Faq faq={faq} />)}
+<div class="faqSection">
+  {faqData.map((faq) => <Faq faq={faq} />)}
 </div> -->

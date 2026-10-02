@@ -3,82 +3,86 @@ import Section from "@components/Section.astro";
 import GreenBox from "@components/GreenBox.astro";
 import ExpectImage from "@assets/images/whattoexpect.webp";
 import { Image } from "astro:assets";
+import SectionText from "@components/SectionText.astro";
 import Checkmark from "@icons/checkmark.svg";
 ---
 
-<div class="expect-wrapper">
-  <section class="expect">
-    <div class="img">
-      <GreenBox width="11rem" height="10rem" data-location="top-left">
-        <Image class="expectImg" src={ExpectImage} alt="What to expect" />
+<Section>
+  <div class="grid">
+    <div class="expect-wrapper">
+      <GreenBox width="11rem" height="10rem" location="top-left">
+        <Image src={ExpectImage} alt="Expectimg" />
       </GreenBox>
-    </div>
-    <div>
-      <Section
-        eyebrow="WE'LL WORK WITH YOU"
-        title="What To Expect"
-        subtitle="Our collaboration is built on transparency, efficiency, and measurable results. Together, we create strategies tailored to your unique needs and goals."
-      />
-      <div class="checkpadding">
-        <div class="checksvg">
-          <Checkmark width={32} height={32} class="checkmark" />
-          <p>
-            Collaborate to build actionable strategies that drive sustainable
-            growth and deliver tangible outcomes.
-          </p>
-        </div>
-        <div class="checksvg">
-          <Checkmark width={32} height={32} class="checkmark" />
-          <p>
-            Identify opportunities to optimize processes and implement impactful
-            solutions with measurable results.
-          </p>
-        </div>
+      <div class="text-content">
+        <SectionText
+          eyebrow="WE'LL WORK WITH YOU"
+          title="What to Expect"
+          subtitle="Our collaboration is built on transparency, efficiency, and measurable results. Together, we create strategies tailored to your unique needs and goals."
+        />
+        <ul>
+          <li>
+            <Checkmark width={22} height={22} class="checkmark" />
+            Collaborate to build actionable strategies that drive sustainable growth
+            and deliver tangible outcomes.
+          </li>
+          <li>
+            <Checkmark width={22} height={22} class="checkmark" />
+            Identify opportunities to optimize processes and implement impactful solutions
+            with measurable results.
+          </li>
+        </ul>
       </div>
     </div>
-  </section>
-</div>
+  </div>
+</Section>
 
 <style>
-  .checkmark {
-    color: var(--color-ui-secondary-alternative);
+  @layer components {
+    .grid {
+      container: expect / inline-size;
+    }
   }
-
-  .checkpadding {
-    display: grid;
-    gap: var(--m-spacing);
-  }
-
-  /* display: flex;
-  flex-flow: wrap row-reverse;
-  gap: 2rem;
-  > * {
-    flex: 300px;
-  } */
 
   .expect-wrapper {
-    container: expect / inline-size;
-    margin-block: 5.6rem;
-  }
-
-  .expect {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--xxl-spacing);
+    gap: var(--xl-spacing);
+  }
 
-    .checksvg {
-      display: flex;
-      align-items: start;
-      gap: var(--s-spacing);
-    }
-    img {
-      border-radius: var(--general-radius);
-    }
-
-    @container expect (width < 750px) {
-      display: flex;
-      flex-flow: wrap column-reverse;
+  @container expect (width < 650px) {
+    .expect-wrapper {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
       gap: 2rem;
+    }
+
+    .text-content {
+      order: -1;
+    }
+  }
+
+  .checkmark {
+    color: var(--color-ui-secondary-alternative);
+    flex-shrink: 0;
+  }
+
+  img {
+    border-radius: 1rem;
+    align-self: stretch;
+    object-fit: cover;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    gap: var(--s-spacing);
+    list-style: none;
+
+    > li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--m-spacing);
     }
   }
 </style>

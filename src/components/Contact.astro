@@ -1,0 +1,100 @@
+---
+import SectionText from "./SectionText.astro";
+import Section from "./Section.astro";
+import Phone from "@icons/phone.svg";
+import Clock from "@icons/clock.svg";
+import Pin from "@icons/pin.svg";
+import GreenBox from "./GreenBox.astro";
+import { Image } from "astro:assets";
+import ContactImage from "@assets/images/contact1.webp";
+import ContactImage2 from "@assets/images/contact2.webp";
+import ContactImage3 from "@assets/images/contact3.webp";
+const { theme = "white" } = Astro.props;
+---
+
+<Section theme={theme}>
+  <div class="container-wrapper">
+    <div class="grid-wrapper">
+      <div>
+        <SectionText
+          title="Contact Us. It’s Easy."
+          subtitle="Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative."
+          eyebrow="Process"
+        />
+        <ul>
+          <li><Phone /><span>Call Today</span><p>+1 800 100 900</p></li>
+          <li><Clock /><span>Monday To Friday</span><p>9AM - 5PM</p></li>
+          <li>
+            <Pin /><span>USA Office</span><p>
+              195 Devonshire St Boston, MA 02110
+            </p>
+          </li>
+        </ul>
+      </div>
+      <GreenBox width="15rem" height="8rem" location="bottom-left">
+        <div class="img-wrapper">
+          <Image src={ContactImage} alt="" />
+          <Image src={ContactImage2} alt="" />
+          <Image src={ContactImage3} alt="" />
+        </div>
+      </GreenBox>
+    </div>
+  </div>
+</Section>
+
+<style>
+  .container-wrapper {
+    container: contact / inline-size;
+  }
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: var(--m-spacing);
+  }
+
+  span {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  p {
+    grid-column: 2;
+    grid-row: 2;
+    font-weight: 600;
+  }
+
+  .grid-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+  }
+
+  @container contact (width < 650px) {
+    .grid-wrapper {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  img {
+    border-radius: 1rem;
+  }
+  .img-wrapper {
+    display: grid;
+    gap: 1rem;
+    grid: auto / 1fr 1fr;
+
+    img:first-child {
+      grid-row: span 2;
+      align-self: stretch;
+      object-fit: cover;
+    }
+  }
+</style>
