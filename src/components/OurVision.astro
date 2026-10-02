@@ -1,0 +1,115 @@
+---
+import Section from "@components/Section.astro";
+import GreenBox from "@components/GreenBox.astro";
+import VisionImage from "@assets/images/ourvision.webp";
+import { Image } from "astro:assets";
+import SectionText from "@components/SectionText.astro";
+import Checkmark from "@icons/checkmark.svg";
+---
+
+<Section>
+  <div class="grid">
+    <div class="expect-wrapper">
+      <div class="text-content">
+        <SectionText
+          eyebrow="OUR VISION"
+          title="Turn your ideas into reality."
+          subtitle="Capitalize on low hanging fruit to identify a ballpark value added activity beta test. Override the digital divide with additional from DevOps."
+        />
+        <ul>
+          <li>
+            <Checkmark width={22} height={22} class="checkmark" />
+            Bring to the table win-win survival strategies to ensure proactive domination.
+            At the end of the day.
+          </li>
+          <li>
+            <Checkmark width={22} height={22} class="checkmark" />
+            Capitalize on low hanging fruit to identify a ballpark value added activity
+            to beta test override the digital.
+          </li>
+        </ul>
+      </div>
+      <GreenBox width="8rem" height="7rem" location="top-right">
+        <Image src={VisionImage} alt="Expectimg" />
+      </GreenBox>
+    </div>
+  </div>
+  <div class="number">
+    <div class="stat">
+      <h3>1128+</h3>
+      <p>Successful Work</p>
+    </div>
+    <div class="stat">
+      <h3>908+</h3>
+      <p>Team member</p>
+    </div>
+    <div class="stat">
+      <h3>258+</h3>
+      <p>Happy Customers</p>
+    </div>
+    <div class="stat">
+      <h3>564+</h3>
+      <p>Creative Idea</p>
+    </div>
+  </div>
+</Section>
+
+<style>
+  @layer components {
+    .grid {
+      container: vision / inline-size;
+    }
+  }
+
+  .expect-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--xl-spacing);
+  }
+
+  @container vision (width < 650px) {
+    .expect-wrapper {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 2rem;
+    }
+
+    .text-content {
+      order: -1;
+    }
+  }
+
+  .checkmark {
+    color: var(--color-ui-secondary-alternative);
+    flex-shrink: 0;
+  }
+
+  .number {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--xxl-spacing);
+    text-align: center;
+    margin-top: var(--xl-spacing);
+  }
+
+  img {
+    border-radius: 1rem;
+    align-self: stretch;
+    object-fit: cover;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    gap: var(--s-spacing);
+    list-style: none;
+
+    > li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--m-spacing);
+    }
+  }
+</style>

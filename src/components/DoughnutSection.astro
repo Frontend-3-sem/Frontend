@@ -8,7 +8,7 @@ const { label, value } = Astro.props;
     <circle cx="50" cy="50" r="48" class="progress" pathLength="100"></circle>
     <circle class="marker" r="4" fill="black" stroke="white"></circle>
   </svg>
-  <h4>{label}</h4>
+  <h6>{label}</h6>
 </figure>
 
 <style>
@@ -65,13 +65,13 @@ const { label, value } = Astro.props;
     animation-trigger: --a play-forwards reset;
 
     rotate: calc(var(--s) * 360deg);
-    transition: rotate .4s;
+    transition: rotate 0.4s;
   }
 
   @keyframes --frames {
     to {
       rotate: 1turn;
-      --s: 1
+      --s: 1;
     }
   } */
 </style>
