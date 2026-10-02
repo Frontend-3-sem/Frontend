@@ -1,35 +1,53 @@
 ---
-
+const { preheader, header, text, direction = "left" } = Astro.props;
 ---
 
 <section>
   <div>
-    <p>Pre header</p>
-    <h1>Heading</h1>
-    <p>Tekst her</p>
+    <p class="pre">{preheader}</p>
+    <h1 data-direction={direction}>{header}</h1>
+    <p>{text}</p>
   </div>
 </section>
 
 <style>
   section {
-    margin-block: 3rem;
+    padding-block: var(--xxl-spacing);
+    background: var(--color-surface-secondary);
+  }
+  div {
+    place-items: center;
+    text-align: center;
+  }
+  p {
+    max-width: 65ch;
+    font-size: var(--postheader-size);
+    color: var(--color-text-muted);
   }
   h1 {
     --underline: 4px;
-    --offset: 3px;
-    text-decoration: underline red var(--underline);
+    --offset: 8px;
+    text-decoration: underline var(--color-action) var(--underline);
     text-underline-offset: var(--offset);
     anchor-name: --title;
     text-box: cap alphabetic;
+    width: fit-content;
     &::before {
       content: "";
       position: absolute;
-      left: 0;
-      right: anchor(--title left);
-      top: calc (anchor(--title top) + 1cap);
+      position-anchor: --title;
+      top: calc(anchor(bottom));
       margin-top: var(--offset);
       height: var(--underline);
-      background: linear-gradient(90deg, transparent, red);
+      background: var(--color-action);
+    }
+    &[data-direction="left"]::before {
+      right: calc(anchor(left) - 1px);
+      left: 0;
+    }
+    &[data-direction="right"]::before {
+      left: calc(anchor(right) - 1px);
+      right: 0;
     }
   }
 </style>

@@ -58,6 +58,7 @@
   --h4-size: clamp(1.375rem, 0.8929rem + 2.1429vw, 2.5rem);
   --h5-size: clamp(1.25rem, 0.8482rem + 1.7857vw, 2.1875rem);
   --h6-size: clamp(1.125rem, 0.8036rem + 1.4286vw, 1.875rem);
+  --postheader-size: clamp(1rem, 1.0179rem + 0.4762vw, 1.375rem);
   --body-size: clamp(1rem, 0.9464rem + 0.2381vw, 1.125rem);
   --preheader-size: clamp(0.75rem, 0.6429rem + 0.4762vw, 1rem);
 
