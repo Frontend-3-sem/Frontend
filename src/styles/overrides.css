@@ -4,3 +4,20 @@
     margin-top: 1em;
   }
 }
+
+.card-layout {
+  padding: var(--card-padding);
+  border-radius: var(--general-radius);
+  > :first-child {
+    > :first-child {
+      margin-bottom: var(--s-spacing);
+    }
+    > :nth-child(2) {
+      text-box: trim-both cap alphabetic;
+      margin-bottom: var(--xs-spacing);
+    }
+    > :nth-child(3) {
+      margin-bottom: var(--s-spacing);
+    }
+  }
+}
