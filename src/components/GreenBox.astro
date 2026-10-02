@@ -29,5 +29,8 @@ const { location = "top-left", width, height } = Astro.props;
     &[data-location="bottom-left"]::before {
       inset: auto auto -1rlh -2rlh;
     }
+    &[data-location="top-right"]::before {
+      inset: -1rlh -1rlh auto auto;
+    }
   }
 </style>

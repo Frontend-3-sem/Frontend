@@ -2,37 +2,46 @@
 //@ts-nocheck
 import Section from "@components/Section.astro";
 import Card from "./Card.astro";
-const { theme = "muted", ...props } = Astro.props;
+
 import SectionText from "./SectionText.astro";
 const FaqData = await fetch("https://ftk-api.pages.dev/faq").then((res) =>
   res.json(),
 );
 ---
 
-<Section theme={theme}>
+<Section>
   <div class="preheader">
     <h5 class="pre">Faq</h5>
     <h2>Customer Questions</h2>
   </div>
-  {
-    FaqData.map((faq) => (
-      <details name="faq">
-        <summary>
-          <h4>{faq.question}</h4>
-        </summary>
-        <p>{faq.answer}</p>
-      </details>
-    ))
-  }
+  <div class="faq-wrapper">
+    {
+      FaqData.map((faq) => (
+        <details name="faq">
+          <summary>
+            <h4>{faq.question}</h4>
+          </summary>
+          <p>{faq.answer}</p>
+        </details>
+      ))
+    }
+  </div>
 </Section>
 <style>
   .preheader {
     text-align: center;
   }
-
   details {
     border-block-end: 2px solid #dadada;
     padding-block: 1rem;
+    cursor: pointer;
+  }
+  & h4 {
+    font-size: var(--postheader-size);
+  }
+
+  p {
+    color: var(--color-text-muted);
   }
 
   summary {
