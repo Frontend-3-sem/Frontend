@@ -4,10 +4,16 @@ import Card from "@components/Card.astro";
 import Newsletter from "@components/Newsletter.astro";
 import Section from "@components/Section.astro";
 import Faq from "@components/Faq.astro";
+import SectionHeading from "@components/SectionHeading.astro";
 ---
 
 <Layout>
-  <h1>About us</h1>
+  <SectionHeading
+    preheader="About"
+    header="Igniting Innovation"
+    text="Our strength lies in the collaboration between our talented teams and esteemed clients. We cultivate a workplace that champions innovation, promotes peak performance, and guarantees client satisfaction."
+    direction="right"
+  />
   <!-- Byg sidens sektioner her med udgangspunkt i Figma-designet. -->
   <Card header="Overskrift her" text="Her kommer der en masse tekst" />
   <Section

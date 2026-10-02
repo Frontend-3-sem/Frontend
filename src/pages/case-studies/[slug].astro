@@ -3,6 +3,7 @@
 import { getCaseStudies } from "@lib/api";
 import { Image } from "astro:assets";
 import Layout from "@layouts/Layout.astro";
+import SectionHeading from "@components/SectionHeading.astro";
 
 export async function getStaticPaths() {
   const caseStudies = await getCaseStudies();
@@ -18,6 +19,12 @@ const { caseName, category, date, image, buttonLabel } = caseStudy.caseDetails;
 ---
 
 <Layout>
+  <SectionHeading
+    preheader="CASE STUDIES"
+    header={caseName}
+    text="Our achievements reflect the close collaboration between our expert teams and our esteemed clientele. We cultivate a workplace that champions peak performance and guarantees client satisfaction."
+    direction="left"
+  />
   <article class="case-story-article">
     */ Flow */
     <header>
