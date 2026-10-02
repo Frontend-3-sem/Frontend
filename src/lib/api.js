@@ -26,7 +26,3 @@ export function getExperience() {
 export function getValue() {
   return apiFetch("https://ftk-api.pages.dev/core-values");
 }
-
-export function getFaq() {
-  return apiFetch("https://ftk-api.pages.dev/faq");
-}

@@ -1,11 +1,78 @@
-<!-- ---
+---
 //@ts-nocheck
-import Faq from "@components/Faq.astro";
-const faqData = await fetch("https://ftk-api.pages.dev/faq").then((res) =>
+import Section from "@components/Section.astro";
+import Card from "./Card.astro";
+const { theme = "muted", ...props } = Astro.props;
+import SectionText from "./SectionText.astro";
+const FaqData = await fetch("https://ftk-api.pages.dev/faq").then((res) =>
   res.json(),
 );
 ---
 
-<div class="faqSection">
-  {faqData.map((faq) => <Faq faq={faq} />)}
-</div> -->
+<Section theme={theme}>
+  <div class="preheader">
+    <h5 class="pre">Faq</h5>
+    <h2>Customer Questions</h2>
+  </div>
+  {
+    FaqData.map((faq) => (
+      <details name="faq">
+        <summary>
+          <h4>{faq.question}</h4>
+        </summary>
+        <p>{faq.answer}</p>
+      </details>
+    ))
+  }
+</Section>
+<style>
+  .preheader {
+    text-align: center;
+  }
+
+  details {
+    border-block-end: 2px solid #dadada;
+    padding-block: 1rem;
+  }
+
+  summary {
+    position: relative;
+    anchor-name: --summary;
+    &::marker {
+      content: "";
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      border-block-start: 2px solid #181818;
+      height: 0;
+      width: 1rem;
+      inset-block-start: 50%;
+      inset-inline-end: 0;
+      position: absolute;
+      position-anchor: --summary;
+    }
+
+    &::after {
+      transform: rotate(90deg);
+      transform-origin: 50%;
+    }
+  }
+
+  details[open] summary::after {
+    transform: rotate(0deg);
+  }
+
+  /*   summary::marker {
+    content: none;
+  }
+
+  summary::after {
+    content: "+";
+  }
+
+  [open] summary::after {
+    content: "-";
+  } */
+</style>
