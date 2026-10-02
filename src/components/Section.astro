@@ -15,7 +15,20 @@ const { theme = "white", ...props } = Astro.props;
   }
 
   [data-theme="dark"] {
-    --bg-surface: var(--color-ui-primary);
+    --pattern-color: var(--color-text-muted);
+    --bg-surface:
+      radial-gradient(
+        ellipse farthest-side at 65% 35%,
+        #0000,
+        var(--color-ui-primary)
+      ),
+      conic-gradient(
+          from 180deg at 1px 1px,
+          rgb(from var(--pattern-color) r g b / 0.35) 75%,
+          #0000 0
+        ) -1px -1px /
+        50px 50px,
+      var(--color-ui-primary);
   }
 
   [data-theme="accent"] {

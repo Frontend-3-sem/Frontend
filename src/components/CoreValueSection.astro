@@ -4,27 +4,70 @@ import { getValue } from "@lib/api";
 import Section from "@components/Section.astro";
 import SectionText from "@components/SectionText.astro";
 import CoreValueCard from "./CoreValueCard.astro";
+import Button from "./Button.astro";
 const { theme = "dark" } = Astro.props;
 const ValueData = await getValue();
 const { title, subtitle, eyebrow, values } = ValueData;
 ---
 
-<Section theme={theme}>
-  <SectionText title={title} subtitle={subtitle} eyebrow={eyebrow} />
+<Section class="section" theme={theme}>
+  <div>
+    <SectionText title={title} subtitle={subtitle} eyebrow={eyebrow} />
+    <Button variant="primary" href="#0">Get in touch</Button>
+  </div>
   <div class="CoreValue">
     {values.map((card) => <CoreValueCard {...card} />)}
   </div>
 </Section>
 
 <style>
-  .CoreValue {
+  div:first-of-type {
     display: flex;
-    grid-column: 1/-1;
+    justify-content: space-between;
+    place-items: end;
+    & :first-child {
+      max-width: 70ch;
+    }
+    & :last-child {
+      margin-bottom: var(--m-spacing);
+    }
+  }
+  .CoreValue {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* grid-template-rows: auto auto auto auto; */
+    /* grid-column: 1/-1; */
     gap: var(--m-spacing);
-    scroll-behavior: smooth;
-    overflow-inline: auto;
-    scroll-snap-type: inline mandatory;
-    padding-inline: max(1rem, 50% - var(--max-content) / 2);
+    /* scroll-behavior: smooth; */
+    /* overflow-inline: auto; */
+    /* scroll-snap-type: inline mandatory; */
+    /* padding-inline: max(1rem, 50% - var(--max-content) / 2); */
     margin-block-end: 5.6rem;
+  }
+
+  @media (max-width: 1000px) {
+    .CoreValue {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    div:first-of-type {
+      & :first-child {
+        max-width: 45ch;
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    .CoreValue {
+      grid-template-columns: 1fr;
+    }
+
+    div:first-of-type {
+      flex-direction: column;
+      align-items: start;
+      & :first-child {
+        max-width: 35ch;
+      }
+    }
   }
 </style>

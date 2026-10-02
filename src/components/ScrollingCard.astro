@@ -3,7 +3,7 @@ const { icon, title, description } = Astro.props;
 import DynamicIcon from "./helpers/DynamicIcon.astro";
 ---
 
-<article class="card">
+<article class="card card-layout">
   <div>
     <DynamicIcon name={icon} />
     <h4>{title}</h4>
@@ -14,18 +14,10 @@ import DynamicIcon from "./helpers/DynamicIcon.astro";
 <style>
   @layer components {
     article {
-      --p: progress(100vw, 400px, 1200px);
-      padding: var(--card-padding);
-      border-radius: var(--general-radius);
       scroll-snap-align: center;
       flex: 0 0 min(85%, 24rem);
       p {
         color: var(--color-text-muted);
-        font-family: var(--body-font);
-        font-size: calc(
-          var(--p) * (var(--body-max-size) - var(--body-min-size)) +
-            var(--body-min-size)
-        );
       }
     }
     .card {
