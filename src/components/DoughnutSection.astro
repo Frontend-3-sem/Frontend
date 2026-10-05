@@ -2,7 +2,7 @@
 const { label, value } = Astro.props;
 ---
 
-<figure data-value={value}>
+<figure data-value={value} scroll-trigger>
   <svg viewBox="0 0 100 100">
     <circle cx="50" cy="50" r="48" class="track"></circle>
     <circle cx="50" cy="50" r="48" class="progress" pathLength="100"></circle>
@@ -12,11 +12,32 @@ const { label, value } = Astro.props;
 </figure>
 
 <style>
+  [scroll-trigger] {
+    --transition-duration: 1s;
+    animation: --switch linear both;
+    animation-timeline: view();
+    animation-range: 12.5% 25%;
+
+    > * {
+      transition: var(--transition-duration) --progress ease;
+    }
+  }
+
+  @keyframes --switch {
+    to {
+      --progress: 1;
+    }
+  }
+  @property --progress {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0;
+  }
   figure {
     --value-string: attr(data-value);
     --value-number: attr(data-value type(<number>));
-    --value-percent: attr(data-value %);
-
+    --value-percent: calc(var(--progress) * 1%);
+    transition: --progress 1s;
     container: stack / inline-size;
     display: grid;
     grid: "stack";
@@ -25,14 +46,18 @@ const { label, value } = Astro.props;
     min-inline-size: 0;
     text-align: center;
     gap: var(--s-spacing);
+
+    &::before {
+      counter-reset: value round(var(--progress));
+      /* content: var(--value-string) "%"; */
+      content: counter(value, decimal-leading-zero) "%";
+      grid-area: stack;
+      font-size: 30cqw;
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum";
+    }
   }
 
-  figure::after {
-    content: var(--value-string) "%";
-    grid-area: stack;
-    font-size: 25cqw;
-    font-weight: 700;
-  }
   svg {
     grid-area: stack;
     rotate: z -90deg;
@@ -51,7 +76,7 @@ const { label, value } = Astro.props;
   .progress {
     stroke: white;
     stroke-dasharray: 100.1;
-    stroke-dashoffset: calc(100 - var(--value-number));
+    stroke-dashoffset: calc(100 - var(--progress));
     stroke-linecap: round;
   }
   .marker {

@@ -1,10 +1,13 @@
 ---
-
+const { href } = Astro.props;
 ---
 
-<span>Ask</span>
+<a {href}> <span data-variant={href}>Ask</span></a>
 
 <style>
+  a {
+    text-decoration: none;
+  }
   span {
     font-weight: 600;
     font-size: 1.875rem;
