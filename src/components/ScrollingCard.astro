@@ -16,6 +16,10 @@ import DynamicIcon from "./helpers/DynamicIcon.astro";
     article {
       scroll-snap-align: center;
       flex: 0 0 min(85%, 24rem);
+      height: fit-content;
+      h4 {
+        font-size: var(--postheader-size);
+      }
       p {
         color: var(--color-text-muted);
       }

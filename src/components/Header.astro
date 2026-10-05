@@ -7,7 +7,7 @@ import Button from "./Button.astro";
 
 <header>
   <nav>
-    <Logo />
+    <Logo href="/" />
     <ul>
       <li>
         <a href="/" class={currentPath === "/" ? "active" : ""}>Home</a>
@@ -32,7 +32,9 @@ import Button from "./Button.astro";
           <input type="text" id="email" name="email" />
           <label for="pwd">Password</label>
           <input type="password" id="pwd" name="password" />
-          <Button variant="accent" href="#0">Go to dashboard</Button>
+          <Button class="inputButton" variant="accent" type="submit"
+            >Go to dashboard</Button
+          >
         </form>
       </ButtonLogin>
     </div>
@@ -61,11 +63,11 @@ import Button from "./Button.astro";
       padding-block: 0.75rem;
     }
 
-    ul a.active {
-      text-decoration-color: var(--color-action);
-      text-underline-offset: 0.45rem;
-      text-decoration-thickness: 0.25rem;
+    ul a:is(:hover, :focus-visible, .active) {
       text-decoration-line: underline;
+      text-decoration-color: var(--color-action);
+      text-decoration-thickness: 0.25rem;
+      text-underline-offset: 0.45rem;
     }
   }
 
@@ -73,6 +75,16 @@ import Button from "./Button.astro";
     border-radius: var(--btn-radius);
     border: #b1b1b1 solid 1px;
     background-color: #ffffff;
+    padding: 1rem 1rem;
+    margin-bottom: 1.5rem;
+  }
+  label {
+    margin-bottom: 0.3rem;
+    font-family: var(--all-headers-font);
+  }
+
+  .inputButton {
+    justify-content: center;
   }
 
   nav {
@@ -107,12 +119,38 @@ import Button from "./Button.astro";
     }
   }
 
+  h4 {
+    text-box-trim: trim-start;
+    margin: 0 0 2rem;
+  }
+
   form {
     display: grid;
   }
+
   form > * {
     transition: 0.5s;
     transition-delay: calc(sibling-index() * 0.1s);
-    transition-timing-function:;
+    transition-timing-function: linear(
+      0,
+      0.013 1%,
+      0.051 2.2%,
+      0.404 9.8%,
+      0.51 12.6%,
+      0.602 15.5%,
+      0.683 18.7%,
+      0.754 22.2%,
+      0.813 26%,
+      0.861 30.2%,
+      0.9 34.8%,
+      0.931 40%,
+      0.972 52.7%,
+      0.992 70.2%,
+      1
+    );
+    @starting-style {
+      translate 0 2rem;
+      opacity: 0;
+    }
   }
 </style>

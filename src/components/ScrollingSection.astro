@@ -4,6 +4,7 @@ import { getFinancial } from "@lib/api";
 import Section from "@components/Section.astro";
 import SectionText from "@components/SectionText.astro";
 import ScrollingCard from "./ScrollingCard.astro";
+import Button from "./Button.astro";
 const { theme = "muted" } = Astro.props;
 const FinancialData = await getFinancial();
 const { title, subtitle, eyebrow, values } = FinancialData;
@@ -11,7 +12,23 @@ const { title, subtitle, eyebrow, values } = FinancialData;
 
 <Section theme={theme}>
   <SectionText title={title} subtitle={subtitle} eyebrow={eyebrow} />
-  <div class="scrolling">
+  <div class="scrollButton">
+    <Button
+      variant="outline"
+      name="arrow-left"
+      command="--scroll"
+      commandfor="scroller"
+      value="-0.9"
+    />
+    <Button
+      variant="outline"
+      name="arrow--right"
+      command="--scroll"
+      commandfor="scroller"
+      value="0.9"
+    />
+  </div>
+  <div class="scrolling" id="scroller">
     {values.map((card) => <ScrollingCard {...card} />)}
   </div>
 </Section>
@@ -23,8 +40,33 @@ const { title, subtitle, eyebrow, values } = FinancialData;
     gap: var(--m-spacing);
     scroll-behavior: smooth;
     overflow-inline: auto;
-    scroll-snap-type: inline mandatory;
+    scroll-snap-type: x mandatory;
     padding-inline: max(1rem, 50% - var(--max-content) / 2);
-    margin-block-end: 5.6rem;
+  }
+
+  .scrollButton {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 2rem;
+    gap: var(--s-spacing);
+    > * {
+      border-radius: 4rem;
+      padding: 0.5rem;
+      justify-content: center;
+      border: 1.619px solid #fff;
+      min-width: 4rem;
+      min-height: 4rem;
+    }
   }
 </style>
+
+<script>
+  const scroller = document.querySelector("#scroller");
+  scroller.addEventListener("command", (e) => {
+    if (e.command === "--scroll") {
+      scroller.scrollBy({
+        left: scroller.offsetWidth * e.source.value,
+      });
+    }
+  });
+</script>

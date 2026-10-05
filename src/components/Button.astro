@@ -14,6 +14,7 @@ import DynamicIcon from "./helpers/DynamicIcon.astro";
   ) : (
     <button data-variant={variant} {...props}>
       <slot />
+      <DynamicIcon name={name} />
     </button>
   )
 }

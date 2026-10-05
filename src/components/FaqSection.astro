@@ -1,30 +1,30 @@
 ---
 //@ts-nocheck
 import Section from "@components/Section.astro";
-import Card from "./Card.astro";
 
-import SectionText from "./SectionText.astro";
 const FaqData = await fetch("https://ftk-api.pages.dev/faq").then((res) =>
   res.json(),
 );
 ---
 
 <Section>
-  <div class="preheader">
-    <h5 class="pre">Faq</h5>
-    <h2>Customer Questions</h2>
-  </div>
   <div class="faq-wrapper">
-    {
-      FaqData.map((faq) => (
-        <details name="faq">
-          <summary>
-            <h4>{faq.question}</h4>
-          </summary>
-          <p>{faq.answer}</p>
-        </details>
-      ))
-    }
+    <div class="preheader">
+      <h5 class="pre">Faq</h5>
+      <h2>Customer Questions</h2>
+    </div>
+    <div class="faq">
+      {
+        FaqData.map((faq) => (
+          <details name="faq">
+            <summary>
+              <h4>{faq.question}</h4>
+            </summary>
+            <p>{faq.answer}</p>
+          </details>
+        ))
+      }
+    </div>
   </div>
 </Section>
 <style>
@@ -36,7 +36,7 @@ const FaqData = await fetch("https://ftk-api.pages.dev/faq").then((res) =>
     padding-block: 1rem;
     cursor: pointer;
   }
-  & h4 {
+  h4 {
     font-size: var(--postheader-size);
   }
 

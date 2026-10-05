@@ -4,6 +4,8 @@ import { getCaseStudies } from "@lib/api";
 import { Image } from "astro:assets";
 import Layout from "@layouts/Layout.astro";
 import SectionHeading from "@components/SectionHeading.astro";
+import Section from "@components/Section.astro";
+import Button from "@components/Button.astro";
 
 export async function getStaticPaths() {
   const caseStudies = await getCaseStudies();
@@ -25,73 +27,106 @@ const { caseName, category, date, image, buttonLabel } = caseStudy.caseDetails;
     text="Our achievements reflect the close collaboration between our expert teams and our esteemed clientele. We cultivate a workplace that champions peak performance and guarantees client satisfaction."
     direction="left"
   />
-  <article class="case-story-article">
-    */ Flow */
-    <header>
-      <Image
-        src={image.src}
-        alt={image.alt}
-        width={image.width}
-        height={image.height}
-      />
-      <div class="case-details">
-        <dl>
-          <div>
-            <dt>Case Name</dt>
-            <dd>{caseName}</dd>
-          </div>
-          <div>
-            <dt>Category</dt>
-            <dd class="category">{category}</dd>
-          </div>
-          <div>
-            <dt>Date</dt>
-            <dd class="date">{date}</dd>
-          </div>
-        </dl>
-        <a href="#0" class="button">{buttonLabel}</a>
-      </div>
-    </header>
-    <section class="case-story-content">
-      {
-        caseStudy.sections.map((section, index) => (
-          <>
-            {index === 0 ? <h2>{section.title}</h2> : <h3>{section.title}</h3>}
+  <Section>
+    <article class="case-story-article">
+      <header>
+        <Image
+          src={image.src}
+          alt={image.alt}
+          width={image.width}
+          height={image.height}
+        />
 
-            {Array.isArray(section.content) ? (
-              <>
-                {section.content.map((item) => (
-                  <p>{item}</p>
-                ))}
-              </>
-            ) : (
-              <p>{section.content}</p>
-            )}
-            {section.highlights && (
-              <ul>
-                {section.highlights.map((highlight) => (
-                  <li>{highlight}</li>
-                ))}
-              </ul>
-            )}
-            {section.image && (
-              <figure>
-                <Image
-                  src={section.image.src}
-                  alt={section.image.alt}
-                  width={section.image.width}
-                  height={section.image.height}
-                />
-                {section.image.caption && (
-                  <figcaption>{section.image.caption}</figcaption>
-                )}
-              </figure>
-            )}
-          </>
-        ))
-      }
-    </section>
-  </article>
+        <div class="case-details">
+          <dl>
+            <div>
+              <dt>Case Name</dt>
+              <dd>{caseName}</dd>
+            </div>
+            <div>
+              <dt>Category</dt>
+              <dd class="category">{category}</dd>
+            </div>
+            <div>
+              <dt>Date</dt>
+              <dd class="date">{date}</dd>
+            </div>
+          </dl>
+          <Button variant="accent">
+            <a href="#0" class="button">{buttonLabel}</a></Button
+          >
+        </div>
+      </header>
+      <section class="case-story-content">
+        {
+          caseStudy.sections.map((section, index) => (
+            <>
+              {index === 0 ? (
+                <h2>{section.title}</h2>
+              ) : (
+                <h3>{section.title}</h3>
+              )}
+
+              {Array.isArray(section.content) ? (
+                <>
+                  {section.content.map((item) => (
+                    <p>{item}</p>
+                  ))}
+                </>
+              ) : (
+                <p>{section.content}</p>
+              )}
+              {section.highlights && (
+                <ul>
+                  {section.highlights.map((highlight) => (
+                    <li>{highlight}</li>
+                  ))}
+                </ul>
+              )}
+              {section.image && (
+                <figure>
+                  <Image
+                    src={section.image.src}
+                    alt={section.image.alt}
+                    width={section.image.width}
+                    height={section.image.height}
+                  />
+                  {section.image.caption && (
+                    <figcaption>{section.image.caption}</figcaption>
+                  )}
+                </figure>
+              )}
+            </>
+          ))
+        }
+      </section>
+    </article>
+  </Section>
 </Layout>
 
-<style></style>
+<style>
+  .case-story-article {
+    display: grid;
+    grid-column: content-start / content-end;
+  }
+
+  header img {
+    border-radius: var(--card-padding);
+  }
+
+  .case-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: black;
+    padding: var(--card-padding);
+
+    border-radius: var(--card-padding);
+    color: white;
+
+    > dl {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+</style>
