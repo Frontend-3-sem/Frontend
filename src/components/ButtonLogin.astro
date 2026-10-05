@@ -15,6 +15,10 @@ const { id, title } = Astro.props;
     border: none;
     padding: 4px 20px;
     border-radius: 20px;
+    &:hover {
+      background: oklch(from var(--color-on-ui-primary) calc(l - 0.1) c h);
+      scale: 0.98;
+    }
   }
 
   [popovertarget] {

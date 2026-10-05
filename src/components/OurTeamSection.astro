@@ -9,18 +9,20 @@ const team = await getTeamMembers();
 ---
 
 <Section>
-  <div class="ourteam">
-    <div>
-      <SectionText
-        eyebrow="Our team"
-        title="We champion
+  <div class="wrap">
+    <div class="ourteam">
+      <div>
+        <SectionText
+          eyebrow="Our team"
+          title="We champion
         the bold"
-        subtitle="Our success stems from the synergy between dedicated teams and our valued clients. We prioritize a company culture that fosters exceptional productivity, ensures customer satisfaction."
-      />
-      <Button href="/team/" variant="primary" titleleft="Meet the team" />
-    </div>
-    <div class="wrap">
-      {team.slice(0, 2).map((teamMember) => <TeamCard {teamMember} />)}
+          subtitle="Our success stems from the synergy between dedicated teams and our valued clients. We prioritize a company culture that fosters exceptional productivity, ensures customer satisfaction."
+        />
+        <Button href="/team/" variant="primary" titleleft="Meet the team" />
+      </div>
+      <div class="teamwrap">
+        {team.slice(0, 2).map((teamMember) => <TeamCard {teamMember} />)}
+      </div>
     </div>
   </div>
 </Section>
@@ -31,7 +33,14 @@ const team = await getTeamMembers();
     grid-template-columns: 1fr 1fr;
     gap: var(--m-spacing);
   }
-  .wrap {
+
+  @media (width<600px) {
+    .ourteam {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .teamwrap {
     .card-wrap {
       margin-bottom: var(--l-spacing);
     }

@@ -52,12 +52,44 @@ const { theme = "white" } = Astro.props;
     gap: 2rem;
     list-style: none;
     padding: 0;
+    > :first-child {
+      > :first-child {
+        background: #ffecbb;
+        padding: var(--xs-spacing);
+        border-radius: 100px;
+        overflow: visible;
+        path {
+          stroke: #deaa27;
+        }
+      }
+    }
+    > :nth-child(2) {
+      > :first-child {
+        background: #a4eda4;
+        padding: var(--xs-spacing);
+        border-radius: 100px;
+        path {
+          stroke: #4eaf4e;
+        }
+      }
+    }
+    > :nth-child(3) {
+      > :first-child {
+        background: #eaeaea;
+        padding: var(--xs-spacing);
+        border-radius: 100px;
+      }
+    }
   }
 
   li {
     display: grid;
     grid-template-columns: auto 1fr;
     column-gap: var(--m-spacing);
+    > :first-child {
+      aspect-ratio: 1/1;
+      width: 40px;
+    }
   }
 
   span {
