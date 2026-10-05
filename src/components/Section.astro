@@ -11,7 +11,7 @@ const { theme = "white", ...props } = Astro.props;
   [data-theme] {
     --surface: attr(data-theme type(muted | accent | dark), primary);
     background: var(--bg-surface, var(--color-surface-primary));
-    padding: 5.6rem 0rem;
+    padding: var(--section-padding) 0rem;
   }
 
   [data-theme="dark"] {

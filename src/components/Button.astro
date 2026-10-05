@@ -1,15 +1,23 @@
 ---
-const { href, name, variant = "primary", ...props } = Astro.props;
+const {
+  titleleft,
+  titleright,
+  href,
+  name,
+  variant = "primary",
+  ...props
+} = Astro.props;
 import DynamicIcon from "./helpers/DynamicIcon.astro";
 ---
 
 {
   href ? (
     <a data-variant={variant} {href}>
-      <slot />
+      {titleleft}
       <span>
         <DynamicIcon name={name} />
       </span>
+      {titleright}
     </a>
   ) : (
     <button data-variant={variant} {...props}>
@@ -30,6 +38,7 @@ import DynamicIcon from "./helpers/DynamicIcon.astro";
     display: inline-flex;
     align-items: center;
     gap: var(--xs-spacing);
+    width: fit-content;
   }
   [data-variant="primary"] {
     background: var(--color-ui-primary);
