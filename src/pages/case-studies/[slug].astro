@@ -57,7 +57,7 @@ const { caseName, category, date, image, buttonLabel } = caseStudy.caseDetails;
           >
         </div>
       </header>
-      <section class="case-story-content">
+      <section class="case-story-content flow">
         {
           caseStudy.sections.map((section, index) => (
             <>
@@ -120,13 +120,46 @@ const { caseName, category, date, image, buttonLabel } = caseStudy.caseDetails;
     justify-content: space-between;
     background-color: black;
     padding: var(--card-padding);
-
-    border-radius: var(--card-padding);
+    margin-inline: 7%;
+    margin-top: -2.5rem;
+    border-radius: var(--general-radius);
     color: white;
 
     > dl {
       display: flex;
       justify-content: space-between;
+      gap: var(--xxl-spacing);
+      dt {
+        font-size: var(--postheader-size);
+        font-weight: var(--all-header-weight);
+      }
+    }
+  }
+
+  .case-story-content {
+    margin-top: var(--xxl-spacing);
+  }
+  .case-story-content > *:not(figure) {
+    margin-inline: 16%;
+  }
+
+  figure {
+    display: grid;
+    grid-template-columns: subgrid;
+
+    img {
+      grid-row: 1;
+      grid-column: content;
+    }
+    figcaption {
+      grid-row: 1;
+      align-self: end;
+      color: #fff;
+      z-index: 2;
+
+      padding-block: 4rlh 1rlh;
+      padding-left: 16%;
+      background: linear-gradient(180deg, #0000 5%, #000);
     }
   }
 </style>
