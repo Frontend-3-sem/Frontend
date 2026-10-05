@@ -1,0 +1,48 @@
+---
+import Section from "@components/basics/Section.astro";
+import SectionText from "@components/basics/SectionText.astro";
+import Button from "@components/basics/Button.astro";
+import TeamCard from "@components/cards/TeamCard.astro";
+import { getTeamMembers } from "@lib/api";
+
+const team = await getTeamMembers();
+---
+
+<Section>
+  <div class="wrap">
+    <div class="ourteam">
+      <div>
+        <SectionText
+          eyebrow="Our team"
+          title="We champion
+        the bold"
+          subtitle="Our success stems from the synergy between dedicated teams and our valued clients. We prioritize a company culture that fosters exceptional productivity, ensures customer satisfaction."
+        />
+        <Button href="/team/" variant="primary" titleleft="Meet the team" />
+      </div>
+      <div class="teamwrap">
+        {team.slice(0, 2).map((teamMember) => <TeamCard {teamMember} />)}
+      </div>
+    </div>
+  </div>
+</Section>
+
+<style>
+  .ourteam {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--m-spacing);
+  }
+
+  @media (width<600px) {
+    .ourteam {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .teamwrap {
+    .card-wrap {
+      margin-bottom: var(--l-spacing);
+    }
+  }
+</style>

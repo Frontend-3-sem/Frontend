@@ -1,10 +1,10 @@
 ---
 //@ts-nocheck
 import { getValue } from "@lib/api";
-import Section from "@components/Section.astro";
-import SectionText from "@components/SectionText.astro";
-import CoreValueCard from "./CoreValueCard.astro";
-import Button from "./Button.astro";
+import Section from "@components/basics/Section.astro";
+import SectionText from "@components/basics/SectionText.astro";
+import CoreValueCard from "@components/cards/CoreValueCard.astro";
+import Button from "@components/basics/Button.astro";
 const { theme = "muted" } = Astro.props;
 const ValueData = await getValue();
 const { title, subtitle, eyebrow, values } = ValueData;
