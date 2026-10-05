@@ -3,6 +3,11 @@ import { defineConfig, svgoOptimizer, fontProviders } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
+  vite: {
+    build: {
+      cssMinify: false,
+    },
+  },
   redirects: {
     "/case-studies": "/case-studies/taxes-and-efficiency",
   },
