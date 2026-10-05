@@ -1,6 +1,6 @@
 # Refleksion – Figma til kode
 
-**Gruppemedlemmer:** Skriv begge navne her.
+**Gruppemedlemmer: Caroline Hemmingsen & Camille Oddershede**
 
 ## Sådan bruger I filen
 
@@ -38,21 +38,37 @@ Reference: [Datahentning i Astro](https://docs.astro.build/en/guides/data-fetchi
 
 ---
 
-## Eksempel 1: Skriv navnet på et valgt benspænd
+## Eksempel 1: Dekorative gule streger
 
 ### Hvor og hvorfor?
 
-Hvor i løsningen bruger I teknikken, og hvilket konkret problem løser den? Henvis gerne til en fil, fx `src/components/MinKomponent.astro`.
+Den gule streg endte med at blive en udfordring selvom vi tidligere havde gennemgået teknikken i undervisningen. Eksemplet fra undervisningen virkede ikke som ventet i projektet. I komponenten `src/components/SectionHeading.astro` kunne vi ikke få enheden `1cap` til at virke.
 
 ### Relevant kode
 
-Indsæt en kort kodeblok fra jeres løsning. Vælg det passende sprog, og forklar den del, der er vigtig for jeres valg.
+Efter flere forsøg, fandt vi en løsning.
+
+Eksempel fra undervisning
+
+```css
+top: calc(anchor(--title top) + 1cap);
+margin-top: 3px;
+height: var(--underline);
+```
+
+Vores løsning
+
+```css
+top: calc(anchor(bottom));
+margin-top: var(--offset);
+height: var(--underline);
+```
 
 ### Afprøvning og ændringer
 
-- **Vi testede:** Beskriv situationen, fx en smal skærm, lang tekst eller tastaturbetjening.
-- **Vi observerede:** Hvad skete der konkret?
-- **Vi ændrede eller mangler:** Hvad rettede I, eller hvad vil være næste skridt?
+- **Vi testede:** Vi startede med at implementere eksemplet fra undervisningen i vores egen løsning. Værdierne blev ændret til at passe vores eksempel.
+- **Vi observerede:** Ved brug af eksemplet fra undervisningen, kom stregen i `::before` aldrig til at passe helt med linjen under teksten. Den varierede altid en del, og det så ud til at `1cap` ikke havde nogen effekt.
+- **Vi ændrede eller mangler:** I stedet for `1cap` fandt vi en løsning kun med `var`.
 
 ## Eksempel 2: Skriv navnet på et valgt benspænd
 
