@@ -5,6 +5,7 @@ import { Image } from "astro:assets";
 import Layout from "@layouts/Layout.astro";
 import GreenBox from "@components/GreenBox.astro";
 import Button from "@components/Button.astro";
+import DynamicIcon from "@components/helpers/DynamicIcon.astro";
 
 export async function getStaticPaths() {
   const team = await getTeamMembers();
@@ -22,15 +23,21 @@ const { employee } = Astro.props;
   <section>
     <Button href="/team/" name="arrow-left" titleright="Back to team" />
     <div>
-      <GreenBox location="top-left" width="233px" height="164px">
-        <Image
-          style={`view-transition-name: img-${employee.slug}`}
-          src={employee.image.src}
-          alt={employee.image.alt}
-          width={employee.image.width}
-          height={employee.image.height}
-        /></GreenBox
-      >
+      <div>
+        <GreenBox location="top-left" width="233px" height="164px">
+          <Image
+            style={`view-transition-name: img-${employee.slug}`}
+            src={employee.image.src}
+            alt={employee.image.alt}
+            width={employee.image.width}
+            height={employee.image.height}
+          /></GreenBox
+        >
+        <div class="socials">
+          <DynamicIcon name="instagram" />
+          <DynamicIcon name="facebook" />
+        </div>
+      </div>
       <div class="text">
         <div>
           <h3>{employee.name}</h3>
@@ -61,6 +68,13 @@ const { employee } = Astro.props;
         color: var(--color-text-muted);
         margin-block: var(--l-spacing);
       }
+    }
+    .socials {
+      display: flex;
+      gap: var(--s-spacing);
+      justify-content: center;
+      margin-top: var(--m-spacing);
+      height: 30px;
     }
 
     @media (width < 750px) {

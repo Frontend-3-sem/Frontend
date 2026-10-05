@@ -40,26 +40,41 @@ import DynamicIcon from "./helpers/DynamicIcon.astro";
     align-items: center;
     gap: var(--xs-spacing);
     width: fit-content;
+    &:hover {
+      scale: 0.98;
+    }
   }
   [data-variant="primary"] {
     background: var(--color-ui-primary);
     color: var(--color-on-ui-primary);
+    &:hover {
+      background: oklch(from var(--color-ui-primary) calc(l + 0.1) c h);
+    }
 
     @container style(--surface: dark) {
       background-color: var(--color-on-ui-primary);
       color: var(--color-text);
+      &:hover {
+        background: oklch(from var(--color-on-ui-primary) calc(l - 0.1) c h);
+      }
     }
   }
 
   [data-variant="accent"] {
     background: var(--color-action);
     color: contrast-color(var(--color-action));
+    &:hover {
+      background: oklch(from var(--color-action) calc(l - 0.1) c h);
+    }
   }
 
   [data-variant="outline"] {
     background: var(--color-ui-primary);
     color: var(--color-on-ui-primary);
     border: solid 1px var(--color-text-muted);
+    &:hover {
+      background: oklch(from var(--color-ui-primary) calc(l + 0.1) c h);
+    }
   }
 
   span {
