@@ -3,6 +3,8 @@
 import { getTeamMembers } from "@lib/api";
 import { Image } from "astro:assets";
 import Layout from "@layouts/Layout.astro";
+import GreenBox from "@components/GreenBox.astro";
+import Button from "@components/Button.astro";
 
 export async function getStaticPaths() {
   const team = await getTeamMembers();
@@ -17,14 +19,71 @@ const { employee } = Astro.props;
 ---
 
 <Layout>
-  <Image
-    src={employee.image.src}
-    alt={employee.image.alt}
-    width={employee.image.width}
-    height={employee.image.height}
-  />
-  <h2>{employee.name}</h2>
-  <p>{employee.description_long}</p>
-  <h3>Past Experience</h3>
-  <p>{employee.past_experience}</p>
+  <section>
+    <Button href="/team/" name="arrow-left" titleright="Back to team" />
+    <div>
+      <GreenBox location="top-left" width="233px" height="164px">
+        <Image
+          style={`view-transition-name: img-${employee.slug}`}
+          src={employee.image.src}
+          alt={employee.image.alt}
+          width={employee.image.width}
+          height={employee.image.height}
+        /></GreenBox
+      >
+      <div class="text">
+        <div>
+          <h3>{employee.name}</h3>
+          <p>{employee.title}</p>
+          <p>{employee.description_long}</p>
+        </div>
+        <div>
+          <h5>Past Experience</h5>
+          <p>{employee.past_experience}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <style>
+    section {
+      padding-top: var(--s-spacing);
+      > :nth-child(2) {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        margin-block: var(--section-padding);
+        gap: var(--section-padding);
+        img {
+          border-radius: var(--general-radius);
+        }
+      }
+
+      p {
+        color: var(--color-text-muted);
+        margin-block: var(--l-spacing);
+      }
+    }
+
+    @media (width < 750px) {
+      section > :nth-child(2) {
+        grid-template-columns: 1fr;
+      }
+    }
+    h3,
+    h5 {
+      text-box: trim-both cap alphabetic;
+    }
+
+    div:has(h3) {
+      > p:first-of-type {
+        font-size: var(--postheader-size);
+        margin-top: var(--s-spacing);
+      }
+    }
+
+    .text {
+      > :first-child {
+        border-bottom: solid 1px var(--color-text-muted);
+      }
+    }
+  </style>
 </Layout>

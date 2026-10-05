@@ -47,6 +47,11 @@ p {
   font-size: var(--body-size);
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .pre,
 .small {
   font-size: var(--preheader-size);

@@ -15,9 +15,13 @@ import DynamicIcon from "./helpers/DynamicIcon.astro";
       sustainable success.
     </p>
     <div class="btn-wrap">
-      <Button variant="accent" href="#0">Book a Meeting</Button>
-      <Button variant="outline" href="#0" name="arrow--right">Learn More</Button
-      >
+      <Button variant="accent" href="#0" titleleft="Book a Meeting" />
+      <Button
+        variant="outline"
+        href="#0"
+        name="arrow--right"
+        titleleft="Learn More"
+      />
     </div>
   </div>
   <div class="background"></div>
@@ -58,6 +62,7 @@ import DynamicIcon from "./helpers/DynamicIcon.astro";
       z-index: 3;
       place-self: center left;
       text-wrap: balance;
+      padding-top: var(--section-padding);
       h1 {
         --underline: 4px;
         --offset: 8px;

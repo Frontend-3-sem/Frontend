@@ -13,7 +13,7 @@ const { title, subtitle, eyebrow, values } = ValueData;
 <Section class="section" theme={theme}>
   <div>
     <SectionText title={title} subtitle={subtitle} eyebrow={eyebrow} />
-    <Button variant="primary" href="#0">Get in touch</Button>
+    <Button variant="primary" href="#0" titleleft="Get in touch" />
   </div>
   <div class="CoreValue">
     {values.map((card) => <CoreValueCard {...card} />)}

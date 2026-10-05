@@ -7,6 +7,7 @@ import SectionHeading from "@components/SectionHeading.astro";
 import FaqSection from "@components/FaqSection.astro";
 import OurVision from "@components/OurVision.astro";
 import CoreValueSection from "@components/CoreValueSection.astro";
+import OurTeamSection from "@components/OurTeamSection.astro";
 ---
 
 <Layout>
@@ -19,14 +20,7 @@ import CoreValueSection from "@components/CoreValueSection.astro";
   <!-- Byg sidens sektioner her med udgangspunkt i Figma-designet. -->
   <OurVision />
   <CoreValueSection />
-  <Card header="Overskrift her" text="Her kommer der en masse tekst" />
-  <Section
-    preheader="WE'LL WORK WITH YOU"
-    header="What To Expect"
-    text="Our collaboration is built on transparency, efficiency, and measurable results. Together, we create strategies tailored to your unique needs and goals."
-    theme="muted"
-  >
-    <Card header="Overskrift" text="Meget tekst her" />
-  </Section>
+  <OurTeamSection />
+
   <FaqSection />
 </Layout>
