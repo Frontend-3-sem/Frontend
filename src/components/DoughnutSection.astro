@@ -2,7 +2,7 @@
 const { label, value } = Astro.props;
 ---
 
-<figure data-value={value} scroll-trigger>
+<figure data-value={value}>
   <svg viewBox="0 0 100 100">
     <circle cx="50" cy="50" r="48" class="track"></circle>
     <circle cx="50" cy="50" r="48" class="progress" pathLength="100"></circle>
@@ -12,31 +12,10 @@ const { label, value } = Astro.props;
 </figure>
 
 <style>
-  [scroll-trigger] {
-    --transition-duration: 1s;
-    animation: --switch linear both;
-    animation-timeline: view();
-    animation-range: 12.5% 25%;
-
-    > * {
-      transition: var(--transition-duration) --progress ease;
-    }
-  }
-
-  @keyframes --switch {
-    to {
-      --progress: 1;
-    }
-  }
-  @property --progress {
-    syntax: "<number>";
-    inherits: true;
-    initial-value: 0;
-  }
   figure {
     --value-string: attr(data-value);
     --value-number: attr(data-value type(<number>));
-    --value-percent: calc(var(--progress) * 1%);
+    --value-percent: attr(data-value %);
     transition: --progress 1s;
     container: stack / inline-size;
     display: grid;
@@ -46,18 +25,23 @@ const { label, value } = Astro.props;
     min-inline-size: 0;
     text-align: center;
     gap: var(--s-spacing);
-
-    &::before {
-      counter-reset: value round(var(--progress));
-      /* content: var(--value-string) "%"; */
-      content: counter(value, decimal-leading-zero) "%";
-      grid-area: stack;
-      font-size: 30cqw;
-      font-variant-numeric: tabular-nums;
-      font-feature-settings: "tnum";
-    }
+    timeline-trigger: --trigger view() entry 100% exit 0%;
+    animation-trigger: --trigger play-forwards play-backwards;
+  }
+  @property --progress {
+    syntax: "<integer>";
+    inherits: true;
+    initial-value: 0;
   }
 
+  figure::after {
+    content: var(--value-string) "%";
+    grid-area: stack;
+    font-size: 25cqw;
+    font-weight: 700;
+    animation: --count 2s ease-out;
+    animation-trigger: --trigger play-forwards play-backwards;
+  }
   svg {
     grid-area: stack;
     rotate: z -90deg;
@@ -76,27 +60,36 @@ const { label, value } = Astro.props;
   .progress {
     stroke: white;
     stroke-dasharray: 100.1;
-    stroke-dashoffset: calc(100 - var(--progress));
+    stroke-dashoffset: calc(100 - var(--value-number));
     stroke-linecap: round;
+    animation: --fillmath 2s ease-out;
+    animation-trigger: --trigger play-forwards play-backwards;
   }
+
   .marker {
+    visibility: visible;
+    r: 4;
     offset-path: circle(46px at 50px 50px);
     offset-distance: var(--value-percent);
+    animation: --dottrigger 2s ease-out;
+    animation-trigger: --trigger play-forwards play-backwards;
   }
 
-  /* figure {
-    animation: --frames 1s linear;
-    timeline-trigger: --a view() entry 100% exit 0% / cover;
-    animation-trigger: --a play-forwards reset;
-
-    rotate: calc(var(--s) * 360deg);
-    transition: rotate 0.4s;
-  }
-
-  @keyframes --frames {
-    to {
-      rotate: 1turn;
-      --s: 1;
+  @keyframes --count {
+    from {
+      --progress: 0;
     }
-  } */
+  }
+
+  @keyframes --fillmath {
+    from {
+      stroke-dashoffset: 100;
+    }
+  }
+
+  @keyframes --dottrigger {
+    from {
+      offset-distance: 0%;
+    }
+  }
 </style>
