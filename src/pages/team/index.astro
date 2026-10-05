@@ -1,9 +1,9 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import { getTeamMembers } from "@lib/api";
-import TeamCard from "@components/TeamCard.astro";
-import SectionHeading from "@components/SectionHeading.astro";
-import Button from "@components/Button.astro";
+import TeamCard from "@components/cards/TeamCard.astro";
+import SectionHeading from "@components/basics/SectionHeading.astro";
+import Button from "@components/basics/Button.astro";
 
 const team = await getTeamMembers();
 ---

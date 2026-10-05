@@ -1,8 +1,8 @@
 ---
-import Section from "./Section.astro";
-import SectionText from "./SectionText.astro";
-import Button from "./Button.astro";
-import TeamCard from "@components/TeamCard.astro";
+import Section from "@components/basics/Section.astro";
+import SectionText from "@components/basics/SectionText.astro";
+import Button from "@components/basics/Button.astro";
+import TeamCard from "@components/cards/TeamCard.astro";
 import { getTeamMembers } from "@lib/api";
 
 const team = await getTeamMembers();
