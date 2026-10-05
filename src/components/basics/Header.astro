@@ -1,7 +1,7 @@
 ---
 import Logo from "./Logo.astro";
 import ButtonLogin from "./ButtonLogin.astro";
-const currentPath = Astro.url.pathname;
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
 import Button from "./Button.astro";
 ---
 
@@ -9,19 +9,16 @@ import Button from "./Button.astro";
   <nav>
     <Logo href="/" />
     <ul>
-      <li>
-        <a href="/" class={currentPath === "/" ? "active" : ""}>Home</a>
-      </li>
+      <li><a href="/" class={currentPath === "/" ? "active" : ""}>Home</a></li>
       <li>
         <a
           href="/case-studies"
-          class={currentPath === "/case-studies/taxes-and-efficiency"
-            ? "active"
-            : ""}>Case Studies</a
+          class={currentPath.startsWith("/case-studies") ? "active" : ""}
+          >Case Studies</a
         >
       </li>
       <li>
-        <a href="/team/" class={currentPath === "/team/" ? "active" : ""}
+        <a href="/team" class={currentPath.startsWith("/team") ? "active" : ""}
           >Team</a
         >
       </li>
@@ -31,6 +28,7 @@ import Button from "./Button.astro";
         >
       </li>
     </ul>
+
     <div class="button-login">
       <ButtonLogin title="Login" id="login">
         <h4>Dashboard Login</h4>
