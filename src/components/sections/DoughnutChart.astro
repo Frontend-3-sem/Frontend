@@ -1,12 +1,12 @@
 ---
 //@ts-nocheck
-import DoughnutSection from "@components/DoughnutSection.astro";
+import DoughnutSection from "@components/sections/DoughnutSection.astro";
 import { getExperience } from "@lib/api";
 const ExperienceData = await getExperience();
 const { theme = "accent" } = Astro.props;
 const { eyebrow, title, subtitle, stats } = ExperienceData;
-import Section from "./Section.astro";
-import SectionText from "@components/SectionText.astro";
+import Section from "@components/basics/Section.astro";
+import SectionText from "@components/basics/SectionText.astro";
 ---
 
 <Section theme={theme}>
