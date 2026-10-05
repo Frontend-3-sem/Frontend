@@ -3,9 +3,9 @@
 import { getCaseStudies } from "@lib/api";
 import { Image } from "astro:assets";
 import Layout from "@layouts/Layout.astro";
-import SectionHeading from "@components/SectionHeading.astro";
-import Section from "@components/Section.astro";
-import Button from "@components/Button.astro";
+import SectionHeading from "@components/basics/SectionHeading.astro";
+import Section from "@components/basics/Section.astro";
+import Button from "@components/basics/Button.astro";
 
 export async function getStaticPaths() {
   const caseStudies = await getCaseStudies();
